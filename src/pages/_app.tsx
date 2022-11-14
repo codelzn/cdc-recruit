@@ -1,12 +1,12 @@
 import { useRef } from 'react'
 import dynamic from 'next/dynamic'
 import Header from '@/config'
-import Layout from '@/components/dom/Layout'
+import Layout from '@/layout'
 import '@/styles/index.scss'
 
 const Scene = dynamic(() => import('@/components/canvas/Scene'), { ssr: true })
 
-export default function App({ Component, pageProps = { title: 'index' } }) {
+export default function App({ Component, pageProps = { title: 'トップ|CDC新卒採用サイト' } }) {
   const ref = useRef()
   return (
     <>
