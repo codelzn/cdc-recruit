@@ -33,8 +33,7 @@ export default function Scroll({ children }) {
       touchMultiplier: 2,
       infinite: false,
     })
-
-    lenis.on('scroll', ({ scroll, progress }) => {
+    lenis.onScroll(({ scroll, progress }) => {
       state.top = scroll
       state.progress = progress
     })

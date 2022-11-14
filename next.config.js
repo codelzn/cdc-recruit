@@ -8,10 +8,6 @@ const withPWA = require('next-pwa')({
 })
 
 const nextConfig = {
-  // uncomment the following snippet if using styled components
-  // compiler: {
-  //   styledComponents: true,
-  // },
   experimental: {},
   images: {},
   reactStrictMode: true, // Recommended for the `pages` directory, default in `app`.

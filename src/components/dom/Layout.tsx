@@ -1,7 +1,12 @@
-import { useRef, forwardRef } from 'react'
+import React, { useRef, forwardRef } from 'react'
 import { mergeRefs } from 'react-merge-refs'
 
-const Layout = forwardRef(({ children, ...props }, ref) => {
+type Props = {
+  children: React.ReactNode
+  [key: string]: any
+}
+
+const Layout = forwardRef<any, Props>(({ children, ...props }, ref) => {
   const localRef = useRef()
   return (
     <div
