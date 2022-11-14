@@ -1,24 +1,27 @@
 {
-  "name": "react-three-next",
-  "version": "2.0.0",
+  "name": "cdc-recruit",
+  "version": "0.1",
   "authors": [
-    "Renaud ROHLINGER <https://twitter.com/onirenaud>"
+    "codelzn"
   ],
   "license": "MIT",
   "private": true,
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
   "dependencies": {
     "@react-three/drei": "^9.40.0",
     "@react-three/fiber": "^8.9.0",
     "@studio-freight/lenis": "^0.2.21",
+    "framer-motion": "^7.6.6",
     "glsl-random": "^0.0.5",
+    "leva": "^0.9.34",
     "next": "^13.0.1",
     "next-pwa": "^5.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-merge-refs": "^2.0.1",
+    "react-use": "^17.4.0",
     "three": "^0.146.0",
     "three-stdlib": "^2.17.3"
   },
