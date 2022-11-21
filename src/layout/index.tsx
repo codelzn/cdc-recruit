@@ -6,7 +6,7 @@ type Props = {
   [key: string]: any
 }
 
-const Layout = forwardRef<any, Props>(({ children, ...props }, ref) => {
+const Layout = forwardRef<HTMLDivElement, Props>(({ children, ...props }, ref) => {
   const localRef = useRef()
   return <div ref={mergeRefs([ref, localRef])}>{children}</div>
 })

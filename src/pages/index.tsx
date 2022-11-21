@@ -9,7 +9,7 @@ export default function Page(props) {
   )
 }
 
-// Page.canvas = (props) => <Logo scale={0.5} route='/blob' position-y={-1} />
+Page.canvas = (props) => <Logo scale={0.5} route='/blob' position-y={-1} />
 
 export async function getStaticProps() {
   return { props: { title: 'トップ|CDC新卒採用サイト' } }
