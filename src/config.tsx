@@ -22,22 +22,12 @@ export default function Header({ title = titleDefault }) {
       <meta name='keywords' content='新卒採用,キャリアデザインセンター,cdc,株式会社キャリアデザインセンター' />
       <meta name='robots' content='index,follow' />
       <meta name='distribution' content='web' />
-      {/* 
-      Facebook Open Graph meta tags
-        documentation: https://developers.facebook.com/docs/sharing/opengraph */}
       <meta name='og:title' content={title} />
       <meta name='og:type' content='site' />
       <meta name='og:url' content={url} />
       <meta name='og:site_name' content={title} />
       <meta name='og:description' content={description} />
-
-      <link rel='manifest' href='/manifest.json' />
-
-      {/* Meta Tags for HTML pages on Mobile */}
-      {/* <meta name="format-detection" content="telephone=yes"/>
-        <meta name="HandheldFriendly" content="true"/>  */}
       <meta name='viewport' content='width=device-width, minimum-scale=1, initial-scale=1.0' />
-      <meta name='theme-color' content='#000' />
       <link rel='shortcut icon' href='/favicon.ico' />
     </Head>
   )

@@ -1,16 +1,12 @@
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
-
-const withPWA = require('next-pwa')({
-  dest: 'public',
-  disable: process.env.NODE_ENV === 'development',
-})
-
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {},
   images: {},
-  reactStrictMode: true, // Recommended for the `pages` directory, default in `app`.
+  swcMinify: true,
+  reactStrictMode: true,
   webpack(config, { isServer }) {
     // audio support
     config.module.rules.push({
@@ -42,10 +38,18 @@ const nextConfig = {
   },
 }
 
+// manage i18n
+if (process.env.EXPORT !== 'true') {
+  nextConfig.i18n = {
+    locales: ['en', 'jp'],
+    defaultLocale: 'jp',
+  }
+}
+
 const KEYS_TO_OMIT = ['webpackDevMiddleware', 'configOrigin', 'target', 'analyticsId', 'webpack5', 'amp', 'assetPrefix']
 
 module.exports = (_phase, { defaultConfig }) => {
-  const plugins = [[withPWA], [withBundleAnalyzer, {}]]
+  const plugins = [[withBundleAnalyzer]]
 
   const wConfig = plugins.reduce((acc, [plugin, config]) => plugin({ ...acc, ...config }), {
     ...defaultConfig,
