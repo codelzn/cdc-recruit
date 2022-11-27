@@ -1,20 +1,24 @@
+import type { GetStaticProps } from 'next'
 import dynamic from 'next/dynamic'
-import Scene from '@/components/canvas/Scene'
+
+const TopCom = dynamic(() => import('@/components/Top'), { ssr: false })
+const CompanyCom = dynamic(() => import('@/components/Company'), { ssr: false })
+const KeywordCom = dynamic(() => import('@/components/Keyword'), { ssr: false })
+const RecruitCom = dynamic(() => import('@/components/Recruit'), { ssr: false })
 
 export default function Page(props) {
   return (
     <>
-      <h1>
-        あなたの
-        <br />
-        優秀さを
-        <br />
-        実らせる
-      </h1>
+      <TopCom />
+      <CompanyCom />
+      <KeywordCom />
+      <RecruitCom />
     </>
   )
 }
-
-export async function getStaticProps() {
+type StaticProps = {
+  title: string
+}
+export const getStaticProps: GetStaticProps<StaticProps> = async () => {
   return { props: { title: 'トップ|CDC新卒採用サイト' } }
 }

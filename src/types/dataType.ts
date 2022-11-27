@@ -20,9 +20,9 @@ type MemberData = {
   }[]
 }
 /***
- * @description Top Component Data Interface
+ * @description Top Component Data Type
  */
-export interface TopDataInterface {
+export type TopDataType = {
   logo: {
     src: string
     alt: string
@@ -35,9 +35,9 @@ export interface TopDataInterface {
   }
 }
 /***
- * @description Company Component Data Interface
+ * @description Company Component Data Type
  */
-export interface CompanyDataInterface {
+export type CompanyDataType = {
   title: string
   introduce: {
     title: string
@@ -54,9 +54,9 @@ export interface CompanyDataInterface {
   }
 }
 /***
- * @description Keyword Component Data Interface
+ * @description Keyword Component Data Type
  */
-export interface KeywordDataInterface {
+export type KeywordDataType = {
   title: string
   content: {
     subtitle: string
@@ -68,9 +68,9 @@ export interface KeywordDataInterface {
   }
 }
 /***
- * @description Recruit Component Data Interface
+ * @description Recruit Component Data Type
  */
-export interface RecruitDataInterface {
+export type RecruitDataType = {
   title: string
   details: {
     subtitle: string
@@ -78,9 +78,9 @@ export interface RecruitDataInterface {
   }[]
 }
 /***
- * @description Member Component Data Interface
+ * @description Member Component Data Type
  */
-export interface MemberDataInterface {
+export type MemberDataType = {
   title: string
   data: MemberData[]
 }
