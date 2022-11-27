@@ -1,15 +1,19 @@
 import dynamic from 'next/dynamic'
-const Logo = dynamic(() => import('@/components/canvas/Logo'), { ssr: false })
+import Scene from '@/components/canvas/Scene'
 
 export default function Page(props) {
   return (
     <>
-      Top Page
+      <h1>
+        あなたの
+        <br />
+        優秀さを
+        <br />
+        実らせる
+      </h1>
     </>
   )
 }
-
-Page.canvas = (props) => <Logo scale={0.5} route='/blob' position-y={-1} />
 
 export async function getStaticProps() {
   return { props: { title: 'トップ|CDC新卒採用サイト' } }

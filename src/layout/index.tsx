@@ -3,12 +3,15 @@ import { mergeRefs } from 'react-merge-refs'
 
 type Props = {
   children: React.ReactNode
-  [key: string]: any
 }
 
-const Layout = forwardRef<HTMLDivElement, Props>(({ children, ...props }, ref) => {
+const Layout = forwardRef<HTMLDivElement, Props>(({ children }, ref) => {
   const localRef = useRef()
-  return <div ref={mergeRefs([ref, localRef])}>{children}</div>
+  return (
+    <div style={{ height: '100%' }} ref={mergeRefs([ref, localRef])}>
+      {children}
+    </div>
+  )
 })
 Layout.displayName = 'Layout'
 

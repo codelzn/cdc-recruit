@@ -1,8 +1,9 @@
 {
-  "extends": ["next", "prettier", "plugin:tailwind/recommended", "next/babel", "next/core-web-vitals"],
+  "extends": ["next", "prettier", "plugin:tailwind/recommended", "next/core-web-vitals"],
   "rules": {
     "import/prefer-default-export": "off",
     "no-console": "warn",
-    "no-var": "error"
+    "no-var": "error",
+    "react-hooks/exhaustive-deps": "off"
   }
 }
