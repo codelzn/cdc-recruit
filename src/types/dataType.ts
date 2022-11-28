@@ -30,7 +30,7 @@ export type TopDataType = {
   }
   navigation: Navigation[]
   catchcopy: {
-    title: string
+    title: string[]
     description: string[]
   }
 }

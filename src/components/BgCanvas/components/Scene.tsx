@@ -1,13 +1,14 @@
 import { Canvas, RenderProps } from '@react-three/fiber'
 import { Preload, useProgress, Html } from '@react-three/drei'
 import { Suspense } from 'react'
+import usePostProcess from '@/hooks/usePostprocess'
 
 type Props = {
   children: React.ReactNode
 }
 
 export default function Scene({ children, ...props }: Props & RenderProps<HTMLElement>) {
-  const { active, progress } = useProgress()
+  const { progress } = useProgress()
   return (
     <>
       <Canvas {...props}>

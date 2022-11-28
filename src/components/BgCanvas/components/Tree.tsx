@@ -45,7 +45,7 @@ type GLTFResult = GLTF & {
 const Tree = forwardRef<THREE.Group, JSX.IntrinsicElements['group']>((props, ref) => {
   const { nodes, materials } = useGLTF('/model/tree.gltf') as GLTFResult
   return (
-    <group {...props} dispose={null} ref={ref} position={[0, 0, 0]}>
+    <group dispose={null} ref={ref} position={[0, 0, 0]} {...props}>
       <mesh geometry={nodes.Tree.geometry} material={materials['wood.005']}>
         <mesh geometry={nodes.Cube.geometry} material={materials['tree.001']} />
         <mesh geometry={nodes.Cube002.geometry} material={materials['tree.002']} />

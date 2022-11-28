@@ -1,6 +1,5 @@
 import type { GetStaticProps } from 'next'
 import dynamic from 'next/dynamic'
-
 const TopCom = dynamic(() => import('@/components/Top'), { ssr: false })
 const CompanyCom = dynamic(() => import('@/components/Company'), { ssr: false })
 const KeywordCom = dynamic(() => import('@/components/Keyword'), { ssr: false })

@@ -8,7 +8,7 @@ type Props = {
 const Layout = forwardRef<HTMLDivElement, Props>(({ children }, ref) => {
   const localRef = useRef()
   return (
-    <div style={{ height: '100%' }} ref={mergeRefs([ref, localRef])}>
+    <div className='h-full' ref={mergeRefs([ref, localRef])}>
       {children}
     </div>
   )
