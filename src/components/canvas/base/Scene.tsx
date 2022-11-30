@@ -11,8 +11,6 @@ export default function Scene({ children, ...props }: Props & RenderProps<HTMLEl
     <>
       <Canvas {...props}>
         <Suspense fallback={null}>
-          <ambientLight intensity={0.75} />
-          <directionalLight intensity={1} />
           {children}
           <Preload all />
         </Suspense>

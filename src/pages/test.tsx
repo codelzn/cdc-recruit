@@ -1,4 +1,4 @@
-import { MultiBox, SpherePoints } from '@/components/canvas'
+import { MultiBox, SphereAnime } from '@/components/canvas'
 export default function Page() {
-  return <MultiBox />
+  return <SphereAnime />
 }
