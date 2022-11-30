@@ -1,5 +1,4 @@
-import BgCanvas from '@/components/BgCanvas'
-
+import { MultiBox, SpherePoints } from '@/components/canvas'
 export default function Page() {
-  return <BgCanvas />
+  return <MultiBox />
 }
