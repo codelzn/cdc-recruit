@@ -6,8 +6,6 @@ import gsap from 'gsap'
 import { useRef } from 'react'
 import vertexShader from './shader/vertex.glsl'
 import fragmentShader from './shader/fragment.glsl'
-import { EffectComposer, DotScreen } from '@react-three/postprocessing'
-import { BlendFunction } from 'postprocessing'
 
 const sphereGeo = new THREE.IcosahedronGeometry(1, 20)
 const posCount = sphereGeo.attributes.position.count
@@ -61,13 +59,6 @@ function Experience() {
           color={'#F3F2EE'}
         />
       </mesh>
-      {/* <EffectComposer>
-        <DotScreen
-          blendFunction={BlendFunction.NORMAL} // blend mode
-          angle={Math.PI} // angle of the dot pattern
-          scale={1.0} // scale of the dot pattern
-        />
-      </EffectComposer> */}
     </>
   )
 }

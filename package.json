@@ -18,6 +18,8 @@
     "@studio-freight/lenis": "^0.2.21",
     "framer-motion": "^7.6.6",
     "glsl-random": "^0.0.5",
+    "graphql": "^16.6.0",
+    "graphql-request": "^5.0.0",
     "gsap": "^3.11.3",
     "leva": "^0.9.34",
     "next": "^13.0.1",
