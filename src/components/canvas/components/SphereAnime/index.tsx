@@ -61,13 +61,13 @@ function Experience() {
           color={'#F3F2EE'}
         />
       </mesh>
-      <EffectComposer>
+      {/* <EffectComposer>
         <DotScreen
           blendFunction={BlendFunction.NORMAL} // blend mode
           angle={Math.PI} // angle of the dot pattern
           scale={1.0} // scale of the dot pattern
         />
-      </EffectComposer>
+      </EffectComposer> */}
     </>
   )
 }
