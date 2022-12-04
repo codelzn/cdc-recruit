@@ -1,11 +1,11 @@
-import { MultiBox, SphereAnime } from '@/components/canvas'
-import { GetStaticProps } from 'next'
+import { SphereAnime } from '@/components/canvas'
+import { GetStaticProps, GetServerSideProps } from 'next'
 import { gql } from 'graphql-request'
 import { hygraph } from '@/libs/hygraph'
 import { useEffect } from 'react'
 
-export default function Page({ logoData }) {
-  console.log(logoData)
+export default function Page({ data }) {
+  console.log(data)
   return (
     <>
       <SphereAnime />
@@ -13,21 +13,22 @@ export default function Page({ logoData }) {
   )
 }
 const QUERY = gql`
-  query {
-    logoData {
-      alt
+  query Logo {
+    catchcopies {
       id
-      img {
+      title
+      description
+      bgimg {
         url
       }
     }
   }
 `
-export const getStaticProps: GetStaticProps = async () => {
-  const { logoData } = await hygraph.request(QUERY)
+export const getServerSideProps: GetServerSideProps = async () => {
+  const { catchcopies } = await hygraph.request(QUERY)
   return {
     props: {
-      logoData,
+      data: catchcopies[0],
     },
   }
 }
