@@ -5,7 +5,8 @@ import { useRef } from 'react'
 import vertexShader from './shader/vertex.glsl'
 import fragmentShader from './shader/fragment.glsl'
 import { getPositionCentroids } from '@/libs/misc'
-import { MeshProps } from '@react-three/fiber'
+import { MeshProps, useFrame } from '@react-three/fiber'
+import { useControls } from 'leva'
 
 const sphereGeo = new THREE.IcosahedronGeometry(1, 30)
 const posCount = sphereGeo.attributes.position.count
@@ -24,31 +25,42 @@ for (let i = 0; i < randomBuffer.length; i++) {
 sphereGeo.setAttribute('aRandom', new THREE.BufferAttribute(randomBuffer, 1))
 getPositionCentroids(sphereGeo)
 export default function SphereAnime({ ...props }: MeshProps) {
-  const meshRef = useRef<THREE.Mesh<THREE.IcosahedronGeometry, THREE.ShaderMaterial>>(null!)
-  const doTransition = () => {
-    console.log('doTransition')
-    gsap.to(meshRef.current.material.uniforms.uProgress, {
-      duration: 3,
-      value: 1,
-      ease: 'power1.inOut',
-    })
-  }
-  const doTransitionBack = () => {
-    console.log('doTransitionBack')
-    gsap.to(meshRef.current.material.uniforms.uProgress, {
-      duration: 3,
+  const { prog } = useControls({
+    prog: {
       value: 0,
-      ease: 'power1.inOut',
-    })
-  }
-  const clickHandler = () => {
-    meshRef.current.material.uniforms.uProgress.value < 0.5 ? doTransition() : doTransitionBack()
-  }
+      min: 0,
+      max: 1,
+      step: 0.01,
+    },
+  })
+  const meshRef = useRef<THREE.Mesh<THREE.IcosahedronGeometry, THREE.ShaderMaterial>>(null!)
+  // const doTransition = () => {
+  //   console.log('doTransition')
+  //   gsap.to(meshRef.current.material.uniforms.uProgress, {
+  //     duration: 3,
+  //     value: 1,
+  //     ease: 'power1.inOut',
+  //   })
+  // }
+  // const doTransitionBack = () => {
+  //   console.log('doTransitionBack')
+  //   gsap.to(meshRef.current.material.uniforms.uProgress, {
+  //     duration: 3,
+  //     value: 0,
+  //     ease: 'power1.inOut',
+  //   })
+  // }
+  // const clickHandler = () => {
+  //   meshRef.current.material.uniforms.uProgress.value < 0.5 ? doTransition() : doTransitionBack()
+  // }
+  useFrame(() => {
+    meshRef.current.material.uniforms.uProgress.value = prog
+  })
   return (
     <>
       <ambientLight intensity={0.4} />
       <directionalLight position={[1, 2, 3]} />
-      <mesh geometry={sphereGeo} ref={meshRef} onClick={clickHandler} {...props}>
+      <mesh geometry={sphereGeo} ref={meshRef} {...props}>
         <CustomShaderMaterial
           baseMaterial={THREE.MeshStandardMaterial}
           vertexShader={vertexShader}
