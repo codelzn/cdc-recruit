@@ -6,6 +6,7 @@ attribute vec3 aCenter;
 
 uniform float uProgress;
 
+// #define GLSLIFY 1
 mat2 rotation2d(float angle) {
   float s = sin(angle);
   float c = cos(angle);
@@ -34,7 +35,7 @@ vec3 distort(vec3 p) {
   float pr = saturate((p.y + 1.) * .5);
   float localPr = saturate((uProgress - .8 * pr) / .2);
   p -= aCenter;
-  p += normal * aRandom * (localPr) * 2.;
+  p += normal * aRandom * (localPr) * 0.7;
   p *= (1. - localPr);
   p += aCenter;
   p = rotate(p, vec3(0., 1., 0.), localPr * PI * 2. * aRandom * 2.);
