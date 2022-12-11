@@ -1,17 +1,13 @@
-import { motion } from 'framer-motion'
-import { useControls } from 'leva'
+import { useAnimation } from 'framer-motion'
 export default function Animation() {
-  const { w, h, r, trx } = useControls({
-    w: { value: 100, min: 0, max: 1000 },
-    h: { value: 100, min: 0, max: 1000 },
-    r: { value: 0, min: 0, max: 360 },
-    trx: { value: 0, min: 0, max: 1000 },
-  })
+  const controls = useAnimation()
   return (
     <>
-      <div className='bg-red-300' style={{ width: w, height: h, rotate: `${r}deg`, transform: `translateX(${trx}px)` }}>
-        123
-      </div>
+      <div className='w-full h-full bg-red-300'>content1</div>
+      <div className='w-full h-full bg-slate-400'>content2</div>
+      <div className='w-full h-full bg-orange-400'>content3</div>
+      <div className='w-full h-full bg-blue-200'>content4</div>
+      <div className='w-full h-full bg-violet-400'>content5</div>
     </>
   )
 }

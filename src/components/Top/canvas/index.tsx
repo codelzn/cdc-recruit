@@ -8,7 +8,6 @@ export default function CanvasAnime() {
   return (
     <Scene gl={{ outputEncoding: THREE.LinearEncoding }} flat camera={{ position: [0, 0, 5] }}>
       {/* <color args={['black']} attach='background' /> */}
-      <OrbitControls />
       <SphereAnime />
       <TorusAnime />
     </Scene>

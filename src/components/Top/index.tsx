@@ -1,9 +1,21 @@
-export default function TopCom() {
+import type { LogoDatum, Navigation, Catchcopy as CType } from '@/types/topData'
+import Header from './Header'
+import Catchcopy from './Catchcopy'
+import CanvasAnime from './canvas'
+type Props = {
+  logoData: LogoDatum
+  navigation: Navigation
+  catchcopy: CType
+}
+export default function TopCom({ logoData, navigation, catchcopy }: Props) {
   return (
     <>
-      <div className='h-full grid place-items-center'>
-        <h1>Topコンポーネント</h1>
-        <h1 className='text-8xl'></h1>
+      <div className='relative h-full'>
+        <Header logoData={logoData} navigation={navigation} />
+        <Catchcopy />
+        <div className='absolute top-0 w-full h-full'>
+          <CanvasAnime />
+        </div>
       </div>
     </>
   )

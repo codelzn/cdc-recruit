@@ -8,7 +8,6 @@ const author = '株式会社キャリアデザインセンター'
 export default function Header({ title = titleDefault }) {
   return (
     <Head>
-      {/* Recommended Meta Tags */}
       <meta charSet='utf-8' />
       <meta name='language' content='ja' />
       <meta httpEquiv='content-type' content='text/html' />
@@ -16,7 +15,6 @@ export default function Header({ title = titleDefault }) {
       <meta name='designer' content={author} />
       <meta name='publisher' content={author} />
 
-      {/* Search Engine Optimization Meta Tags */}
       <title>{title}</title>
       <meta name='description' content={description} />
       <meta name='keywords' content='新卒採用,キャリアデザインセンター,cdc,株式会社キャリアデザインセンター' />
