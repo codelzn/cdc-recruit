@@ -33,7 +33,7 @@ vec3 rotate(vec3 v, vec3 axis, float angle) {
 
 vec3 distort(vec3 p) {
   float pr = saturate((p.y + 1.) * .5);
-  float localPr = saturate((uProgress - .8 * pr) / .2);
+  float localPr = saturate(((1.0 - uProgress) - .8 * pr) / .2);
   p -= aCenter;
   p += normal * aRandom * (localPr) * 0.7;
   p *= (1. - localPr);
