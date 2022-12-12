@@ -4,7 +4,7 @@ import gsap from 'gsap'
 import { useRef } from 'react'
 import vertexShader from './shader/vertex.glsl'
 import fragmentShader from './shader/fragment.glsl'
-import { getPositionCentroids } from '@/libs/misc'
+import { getPositionCentroids } from '@/libs'
 import { MeshProps, useFrame } from '@react-three/fiber'
 import { useControls } from 'leva'
 

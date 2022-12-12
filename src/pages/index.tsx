@@ -3,27 +3,34 @@ import TopCom from '@/components/Top'
 import CompanyCom from '@/components/Company'
 import KeywordCom from '@/components/Keyword'
 import RecruitCom from '@/components/Recruit'
-import { getTopData } from '@/libs/hygraph'
-import type { TopPageProps } from '@/types/topPageProps'
-export default function Page({ logoData, navigation, catchcopy }: TopPageProps) {
+import { getTopData } from '@/libs'
+import { TopPageProps } from '@/types'
+
+export default function Page({
+  logoData,
+  navigations,
+  catchcopy,
+  introduce,
+  cdcData,
+  keyword,
+  keyContents,
+  recruits,
+}: TopPageProps) {
   return (
     <>
-      {/* <TopCom /> */}
+      <TopCom logoData={logoData} navigations={navigations} catchcopy={catchcopy} />
       <CompanyCom />
       <KeywordCom />
       <RecruitCom />
     </>
   )
 }
-// get server side props
-export const getStaticProps: GetStaticProps = async () => {
-  const { logoData, navigation, catchcopy } = await getTopData()
 
+export const getStaticProps: GetStaticProps = async () => {
+  const topData = await getTopData()
   return {
     props: {
-      logoData,
-      navigation,
-      catchcopy,
+      topData,
       title: 'トップ|CDC新卒採用サイト',
     },
   }

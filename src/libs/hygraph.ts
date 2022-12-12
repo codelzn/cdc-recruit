@@ -1,6 +1,5 @@
 import { GraphQLClient, gql } from 'graphql-request'
-import type { TopData } from '@/types/topData'
-import type { MemberData } from '@/types/memberData'
+import type { TopData, MemberData } from '@/types'
 
 export const hygraph = new GraphQLClient(process.env.CMS_API_URL)
 
@@ -108,11 +107,21 @@ export const memberQuery = gql`
   }
 `
 export async function getTopData() {
-  const { logoData, navigations, catchcopies, introduces } = (await hygraph.request(topQuery)) as TopData
-  return { logoData: logoData[0], navigation: navigations[0], catchcopy: catchcopies[0], introduce: introduces[0] }
+  const { logoData, navigations, catchcopies, introduces, cdcData, keywords, keyContents, recruits } =
+    (await hygraph.request(topQuery)) as TopData
+  return {
+    logoData: logoData[0],
+    navigations: navigations,
+    catchcopy: catchcopies[0],
+    introduce: introduces[0],
+    cdcData: cdcData,
+    keyword: keywords[0],
+    keyContents: keyContents,
+    recruits: recruits,
+  }
 }
 
 export async function getMemberData() {
-  const data = (await hygraph.request(memberQuery)) as MemberData
-  return data
+  const { members } = (await hygraph.request(memberQuery)) as MemberData
+  return { members }
 }
