@@ -8,7 +8,7 @@ import type { TopPageProps } from '@/types/topPageProps'
 export default function Page({ logoData, navigation, catchcopy }: TopPageProps) {
   return (
     <>
-      <TopCom />
+      {/* <TopCom /> */}
       <CompanyCom />
       <KeywordCom />
       <RecruitCom />
