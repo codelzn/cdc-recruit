@@ -1,9 +1,3 @@
-// To parse this data:
-//
-//   import { Convert, MemberData } from "./file";
-//
-//   const memberData = Convert.toMemberData(json);
-
 export type MemberData = {
   members: Member[]
 }
@@ -15,13 +9,14 @@ export interface Member {
   catchphrase: string[]
   story: string
   year: string
-  currentImg: TImg
-  nextImg: TImg
+  currentImg: CurrentImg
+  nextImg: CurrentImg
   interviews: Interview[]
-  schedule: Schedule
+  schedule: Schedule | null
+  sidepic: CurrentImg[]
 }
 
-export interface TImg {
+export interface CurrentImg {
   url: string
 }
 

@@ -12,7 +12,6 @@ export const topQuery = gql`
   query TopData {
     # logoデータ
     logoData {
-      siteTitle
       image {
         url
       }
@@ -47,15 +46,17 @@ export const topQuery = gql`
       subTitle
       data
       content
-    }
-    cdcdataImgs {
-      dataImg {
+      img {
         url
       }
     }
     # CDCのキーワード
     keywords {
+      catchcopy
       title
+      img {
+        url
+      }
       subTitle
       nav
       btnText
@@ -99,6 +100,9 @@ export const memberQuery = gql`
       schedule {
         times
         contents
+      }
+      sidepic {
+        url
       }
     }
   }
