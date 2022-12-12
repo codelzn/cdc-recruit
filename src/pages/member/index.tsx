@@ -7,9 +7,6 @@ export default function Page(props) {
   return <MemberCom />
 }
 
-type StaticProps = {
-  title: string
-}
-export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
+export const getStaticProps: GetStaticProps = async () => {
   return { props: { title: '優秀な人達を知る|CDC新卒採用サイト' } }
 }

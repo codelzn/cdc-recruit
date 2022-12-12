@@ -1,5 +1,3 @@
-import memberData from '@/data/member.json'
-
 export default function MemberCom() {
   return (
     <>

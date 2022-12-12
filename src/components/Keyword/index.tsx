@@ -1,5 +1,3 @@
-import keywordData from '@/data/keyword.json'
-
 export default function KeywordCom() {
   return (
     <>

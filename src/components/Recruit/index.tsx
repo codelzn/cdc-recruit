@@ -1,5 +1,3 @@
-import recruitData from '@/data/recruit.json'
-
 export default function RecruitCom() {
   return (
     <>

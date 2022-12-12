@@ -1,4 +1,4 @@
-import type { GetServerSideProps } from 'next'
+import type { GetStaticProps } from 'next'
 import TopCom from '@/components/Top'
 import CompanyCom from '@/components/Company'
 import KeywordCom from '@/components/Keyword'
@@ -16,7 +16,7 @@ export default function Page({ logoData, navigation, catchcopy }: TopPageProps) 
   )
 }
 // get server side props
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const { logoData, navigation, catchcopy } = await getTopData()
 
   return {
