@@ -123,5 +123,5 @@ export async function getTopData() {
 
 export async function getMemberData() {
   const { members } = (await hygraph.request(memberQuery)) as MemberData
-  return { members }
+  return members
 }

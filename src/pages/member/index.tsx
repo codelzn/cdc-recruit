@@ -1,14 +1,20 @@
 import type { GetStaticProps } from 'next'
-import dynamic from 'next/dynamic'
+import MemberCom from '@/components/Member'
 import { getMemberData } from '@/libs'
+import type { Member } from '@/types'
+import { useMemberData } from '@/store'
 
-const MemberCom = dynamic(() => import('@/components/Member'), { ssr: false })
+type Props = {
+  members: Member[]
+}
 
-export default function Page({ members }) {
+export default function Page({ members }: Props) {
+  const setMemberData = useMemberData((state) => state.setMemberData)
+  setMemberData(members)
   return <MemberCom />
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { members } = await getMemberData()
+  const members = await getMemberData()
   return { props: { members, title: '優秀な人達を知る|CDC新卒採用サイト' } }
 }
