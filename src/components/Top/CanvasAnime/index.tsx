@@ -6,32 +6,17 @@ import TorusAnime from './components/TorusAnime'
 import gsap from 'gsap'
 import { useGlobalState } from '@/store'
 import { useControls } from 'leva'
+import { motion } from 'framer-motion'
 
-export default function CanvasAnime() {
-  const sphereAnime = useGlobalState((state) => state.sphereAnime)
+let scale = {
+  value: 2,
+}
+
+function Experience() {
+  const { sphereAnime, setMoveAnime } = useGlobalState((state) => state)
   const [torusActive, setTorusActive] = useState<boolean>(false)
   const sphereRef = useRef<THREE.Mesh<THREE.IcosahedronGeometry, THREE.ShaderMaterial>>(null!)
   const groupRef = useRef<THREE.Group>(null!)
-  const { x, y, s } = useControls({
-    x: {
-      value: 0,
-      min: -1000,
-      max: 1000,
-      step: 0.1,
-    },
-    y: {
-      value: 0,
-      min: -1000,
-      max: 1000,
-      step: 0.1,
-    },
-    s: {
-      value: 2,
-      min: 0,
-      max: 3,
-      step: 0.01,
-    },
-  })
   const canvasAnime = () => {
     if (!sphereRef.current) return
     setTorusActive(true)
@@ -40,6 +25,14 @@ export default function CanvasAnime() {
       duration: 2.5,
       value: 1,
       delay: 1.2,
+      onComplete: () => setMoveAnime(true),
+    })
+    tl.to(scale, {
+      value: 1.5,
+      duration: 1,
+      onUpdate: () => {
+        groupRef.current?.scale.set(scale.value, scale.value, scale.value)
+      },
     })
   }
   useEffect(() => {
@@ -48,13 +41,29 @@ export default function CanvasAnime() {
     }
   }, [sphereAnime])
   return (
-    <div className='absolute top-0 w-full h-full -z-10' style={{ top: y, left: x }}>
+    <group scale={scale.value} ref={groupRef}>
+      <SphereAnime ref={sphereRef} />
+      <TorusAnime active={torusActive} />
+    </group>
+  )
+}
+
+const variants = {
+  processing: { x: 0, y: 0 },
+  ended: { x: 440, y: -80 },
+}
+
+export default function CanvasAnime() {
+  const moveAnime = useGlobalState((state) => state.moveAnime)
+  return (
+    <motion.div
+      className='absolute top-0 w-full h-full -z-10'
+      variants={variants}
+      animate={moveAnime ? 'ended' : 'processing'}
+      transition={{ duration: 1 }}>
       <Scene flat camera={{ position: [0, 0, 5] }}>
-        <group scale={s} position={[0, 0, 0]} ref={groupRef}>
-          <SphereAnime ref={sphereRef} />
-          <TorusAnime active={torusActive} />
-        </group>
+        <Experience />
       </Scene>
-    </div>
+    </motion.div>
   )
 }

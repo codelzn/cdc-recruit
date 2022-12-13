@@ -10,7 +10,9 @@ export default function TopCom() {
       <div className='relative h-full overflow-hidden'>
         <Header />
         <Catchcopy />
-        <button className='bg-purple-300 border border-red-300 w-fit h-fit' onClick={() => setSphereAnime(true)}>
+        <button
+          className='fixed bg-purple-300 border border-red-300 w-fit h-fit top-5 left-5'
+          onClick={() => setSphereAnime(true)}>
           Active anime
         </button>
         <CanvasAnime />
