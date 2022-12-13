@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useTopData, useGlobalState } from '@/store'
 import { useControls } from 'leva'
+import { useState } from 'react'
 
 const h1Variants = {
   processing: { x: 0, y: 0 },
@@ -8,22 +9,21 @@ const h1Variants = {
 }
 
 export default function Catchcopy() {
-  const catchcopy = useTopData((state) => state.catchcopy)
+  const { title } = useTopData((state) => state.catchcopy)
   const moveAnime = useGlobalState((state) => state.moveAnime)
-  const mookcatchcopy = ['あなたの優秀さを', '実らせる']
-  const { x, y } = useControls({
-    x: { value: 0, min: -1000, max: 1000 },
-    y: { value: 0, min: -1000, max: 1000 },
-  })
+  // const mookcatchcopy = ['あなたの優秀さを', '実らせる']
   return (
-    <motion.h1
-      className='font-semibold leading-snug bg-blue-500 text-8xl w-fit'
-      variants={h1Variants}
-      // animate={moveAnime ? 'processing' : 'ended'}
-    >
-      {mookcatchcopy[0]}
-      <br />
-      {mookcatchcopy[1]}
-    </motion.h1>
+    <>
+      <motion.h1
+        layout
+        className={`${
+          moveAnime ? 'ml-24 mt-[8%] text-8xl' : 'mx-auto mt-[15%] text-9xl'
+        } font-semibold leading-snug w-fit`}
+        transition={{ duration: 1 }}>
+        {title[0]}
+        <br />
+        {title[1]}
+      </motion.h1>
+    </>
   )
 }

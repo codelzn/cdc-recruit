@@ -4,7 +4,9 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {},
-  images: {},
+  images: {
+    domains: ['media.graphassets.com'],
+  },
   swcMinify: true,
   reactStrictMode: true,
   webpack(config, { isServer }) {

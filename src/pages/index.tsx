@@ -1,5 +1,6 @@
 import type { GetStaticProps } from 'next'
 import TopCom from '@/components/Top'
+import MessageCom from '@/components/Message'
 import CompanyCom from '@/components/Company'
 import KeywordCom from '@/components/Keyword'
 import RecruitCom from '@/components/Recruit'
@@ -11,10 +12,11 @@ type Props = {
 }
 export default function Page({ topData }: Props) {
   const setTopData = useTopData((state) => state.setTopData)
-  // setTopData(topData)
+  setTopData(topData)
   return (
     <>
       <TopCom />
+      <MessageCom />
       <CompanyCom />
       <KeywordCom />
       <RecruitCom />
@@ -23,10 +25,10 @@ export default function Page({ topData }: Props) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  // const topData = await getTopData()
+  const topData = await getTopData()
   return {
     props: {
-      // topData,
+      topData,
       title: 'トップ|CDC新卒採用サイト',
     },
   }
