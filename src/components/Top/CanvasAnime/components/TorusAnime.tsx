@@ -61,6 +61,13 @@ export default function TorusAnime({ active = false }: Props) {
       },
       '-=1',
     )
+    tl.to(
+      torusRef.current,
+      {
+        visible: false,
+      },
+      '-=0.5',
+    )
   }
   useEffect(() => {
     if (active) {

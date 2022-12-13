@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { useRef, useState } from 'react'
-import Scene from './components/base/Scene'
+import Scene from './components/Scene'
 import SphereAnime from './components/SphereAnime'
 import TorusAnime from './components/TorusAnime'
 import gsap from 'gsap'

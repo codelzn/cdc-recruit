@@ -5,20 +5,16 @@ import KeywordCom from '@/components/Keyword'
 import RecruitCom from '@/components/Recruit'
 import { getTopData } from '@/libs'
 import { TopPageProps } from '@/types'
-
-export default function Page({
-  logoData,
-  navigations,
-  catchcopy,
-  introduce,
-  cdcData,
-  keyword,
-  keyContents,
-  recruits,
-}: TopPageProps) {
+import { useTopData } from '@/store'
+type Props = {
+  topData: TopPageProps
+}
+export default function Page({ topData }: Props) {
+  const setTopData = useTopData((state) => state.setTopData)
+  setTopData(topData)
   return (
     <>
-      <TopCom logoData={logoData} navigations={navigations} catchcopy={catchcopy} />
+      <TopCom />
       <CompanyCom />
       <KeywordCom />
       <RecruitCom />
