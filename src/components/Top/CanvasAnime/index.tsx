@@ -11,9 +11,9 @@ export default function CanvasAnime() {
   const go = () => {
     setTorusActive(true)
     gsap.to(sphereRef.current.material.uniforms.uProgress, {
-      duration: 2,
-      value: 0.5,
-      delay: 1,
+      duration: 2.5,
+      value: 1,
+      delay: 1.2,
     })
   }
   return (

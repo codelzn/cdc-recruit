@@ -22,9 +22,9 @@ export default function TorusAnime({ active = false }: Props) {
       ease: 'none',
     })
     tl.to(torusProps, {
-      radius: 1.2,
+      radius: 1.4,
       duration: 1,
-      ease: 'power4.Out',
+      ease: 'circ.out',
       onUpdate: () => {
         torusGeometry.dispose()
         torusGeometry = null
@@ -44,7 +44,7 @@ export default function TorusAnime({ active = false }: Props) {
     tl.to(torusProps, {
       radius: 0,
       duration: 1,
-      ease: 'power4.Out',
+      ease: 'circ.in',
       onUpdate: () => {
         torusGeometry.dispose()
         torusGeometry = null
