@@ -1,14 +1,16 @@
+import { motion } from 'framer-motion'
 import { useTopData } from '@/store'
 
 export default function Catchcopy() {
   const catchcopy = useTopData((state) => state.catchcopy)
+  const mookcatchcopy = ['あなたの優秀さを', '実らせる']
   return (
     <>
-      <h1 className='font-semibold leading-snug text-8xl'>
-        あなたの優秀さを
+      <motion.h1 className='font-semibold leading-snug text-8xl'>
+        {mookcatchcopy[0]}
         <br />
-        実らせる
-      </h1>
+        {mookcatchcopy[1]}
+      </motion.h1>
     </>
   )
 }

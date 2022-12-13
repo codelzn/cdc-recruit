@@ -41,8 +41,8 @@ const nextConfig = {
 // manage i18n
 if (process.env.EXPORT !== 'true') {
   nextConfig.i18n = {
-    locales: ['jp'],
-    defaultLocale: 'jp',
+    locales: ['ja'],
+    defaultLocale: 'ja',
   }
 }
 

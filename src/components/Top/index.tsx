@@ -7,7 +7,7 @@ export default function TopCom() {
   const setSphereAnime = useGlobalState((state) => state.setSphereAnime)
   return (
     <>
-      <div className='relative h-full'>
+      <div className='relative h-full overflow-hidden'>
         <Header />
         <Catchcopy />
         <button className='bg-purple-300 border border-red-300 w-fit h-fit' onClick={() => setSphereAnime(true)}>

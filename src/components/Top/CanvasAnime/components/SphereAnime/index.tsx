@@ -4,7 +4,7 @@ import { forwardRef } from 'react'
 import vertexShader from './shader/vertex.glsl'
 import fragmentShader from './shader/fragment.glsl'
 import { getPositionCentroids } from '@/libs'
-import type { MeshProps } from '@react-three/fiber'
+import { MeshProps } from '@react-three/fiber'
 
 const sphereGeo = new THREE.IcosahedronGeometry(1, 30)
 const posCount = sphereGeo.attributes.position.count
@@ -26,7 +26,7 @@ const SphereAnime = forwardRef<THREE.Mesh<THREE.IcosahedronGeometry, THREE.Shade
   ({ ...props }, ref) => {
     return (
       <>
-        <ambientLight intensity={0.5} />
+        <ambientLight intensity={0.4} />
         <directionalLight position={[1, 2, 3]} />
         <mesh geometry={sphereGeo} ref={ref} {...props}>
           <CustomShaderMaterial
