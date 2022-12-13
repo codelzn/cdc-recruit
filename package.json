@@ -9,7 +9,6 @@
     "node": ">=16"
   },
   "dependencies": {
-    "@react-spring/three": "^9.6.0",
     "@react-three/drei": "^9.40.0",
     "@react-three/fiber": "^8.9.0",
     "framer-motion": "^7.6.6",

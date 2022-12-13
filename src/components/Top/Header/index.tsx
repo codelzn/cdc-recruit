@@ -3,7 +3,7 @@ export default function Header() {
   const { logoData, navigations } = useTopData((state) => state)
   return (
     <>
-      <header>header</header>
+      <header className='w-full h-16 bg-red-400'>header</header>
     </>
   )
 }

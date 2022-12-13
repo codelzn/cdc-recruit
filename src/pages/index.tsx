@@ -11,7 +11,7 @@ type Props = {
 }
 export default function Page({ topData }: Props) {
   const setTopData = useTopData((state) => state.setTopData)
-  setTopData(topData)
+  // setTopData(topData)
   return (
     <>
       <TopCom />
@@ -23,10 +23,10 @@ export default function Page({ topData }: Props) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const topData = await getTopData()
+  // const topData = await getTopData()
   return {
     props: {
-      topData,
+      // topData,
       title: 'トップ|CDC新卒採用サイト',
     },
   }
