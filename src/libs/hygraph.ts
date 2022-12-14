@@ -11,6 +11,9 @@ export const topQuery = gql`
   query TopData {
     # logoデータ
     logoData {
+      bigLogo {
+        url
+      }
       image {
         url
       }

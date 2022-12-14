@@ -54,6 +54,7 @@ export interface Keyword {
 }
 
 export interface LogoDatum {
+  bigLogo: Bgimg
   image: Bgimg
   alt: string
   description: string

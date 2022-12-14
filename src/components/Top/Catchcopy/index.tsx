@@ -1,17 +1,19 @@
-import { motion } from 'framer-motion'
+import { LayoutGroup, motion } from 'framer-motion'
 import { useTopData, useGlobalState } from '@/store'
-import { useControls } from 'leva'
-import { useState } from 'react'
 
-const h1Variants = {
-  processing: { x: 0, y: 0 },
-  ended: { x: -440, y: -80 },
+const textVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  show: {
+    opacity: 1,
+  },
 }
 
 export default function Catchcopy() {
   const { title } = useTopData((state) => state.catchcopy)
-  const moveAnime = useGlobalState((state) => state.moveAnime)
-  // const mookcatchcopy = ['あなたの優秀さを', '実らせる']
+  const { moveAnime, textAnime } = useGlobalState((state) => state)
+
   return (
     <>
       <motion.h1
@@ -20,9 +22,23 @@ export default function Catchcopy() {
           moveAnime ? 'ml-24 mt-[8%] text-8xl' : 'mx-auto mt-[15%] text-9xl'
         } font-semibold leading-snug w-fit`}
         transition={{ duration: 1 }}>
-        {title[0]}
-        <br />
-        {title[1]}
+        <LayoutGroup>
+          <motion.span
+            layout
+            animate={textAnime ? 'show' : 'hidden'}
+            variants={textVariants}
+            transition={{ duration: 1, opactiy: { ease: 'linear' } }}>
+            {title[0]}
+          </motion.span>
+          <br />
+          <motion.span
+            layout
+            animate={textAnime ? 'show' : 'hidden'}
+            variants={textVariants}
+            transition={{ duration: 1, opactiy: { ease: 'linear' } }}>
+            {title[1]}
+          </motion.span>
+        </LayoutGroup>
       </motion.h1>
     </>
   )

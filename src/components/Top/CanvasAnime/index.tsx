@@ -5,7 +5,6 @@ import SphereAnime from './components/SphereAnime'
 import TorusAnime from './components/TorusAnime'
 import gsap from 'gsap'
 import { useGlobalState } from '@/store'
-import { useControls } from 'leva'
 import { motion } from 'framer-motion'
 
 let scale = {

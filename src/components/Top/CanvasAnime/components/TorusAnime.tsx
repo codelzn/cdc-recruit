@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import gsap from 'gsap'
 import { useEffect, useRef } from 'react'
+import { useGlobalState } from '@/store'
 
 let torusGeometry = new THREE.TorusGeometry(0, 0.016, 15, 50)
 const blueMaterial = new THREE.MeshBasicMaterial({ color: new THREE.Color('#01A0E9') })
@@ -14,12 +15,15 @@ type Props = {
 
 export default function TorusAnime({ active = false }: Props) {
   const torusRef = useRef<THREE.Mesh<THREE.TorusGeometry, THREE.MeshBasicMaterial>>(null!)
+  const setTextAnime = useGlobalState((state) => state.setTextAnime)
   const anime = () => {
+    torusRef.current.visible = true
     const tl = gsap.timeline()
     tl.to(torusRef.current.position, {
       duration: 1,
       y: 1.1,
       ease: 'none',
+      onComplete: () => setTextAnime(true),
     })
     tl.to(torusProps, {
       radius: 1.4,
@@ -76,6 +80,7 @@ export default function TorusAnime({ active = false }: Props) {
   }, [active])
   return (
     <mesh
+      visible={false}
       geometry={torusGeometry}
       material={blueMaterial}
       rotation-x={Math.PI / 2}
