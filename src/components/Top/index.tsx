@@ -22,7 +22,7 @@ export default function TopCom() {
         <button
           className='fixed bg-purple-300 border border-red-300 w-fit h-fit top-5 left-5'
           onClick={() => setMainController(true)}>
-          Active anime
+          Active animation
         </button>
         <CanvasAnime />
       </div>
