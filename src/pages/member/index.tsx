@@ -10,15 +10,15 @@ type Props = {
 
 export default function Page({ members }: Props) {
   const setMemberData = useMemberData((state) => state.setMemberData)
-  // setMemberData(members)
+  setMemberData(members)
   return <MemberCom />
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  // const members = await getMemberData()
+  const members = await getMemberData()
   return {
     props: {
-      // members,
+      members,
       title: '優秀な人達を知る|CDC新卒採用サイト',
     },
   }
