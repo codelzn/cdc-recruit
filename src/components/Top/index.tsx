@@ -4,10 +4,10 @@ import CanvasAnime from './CanvasAnime'
 import Loading from './Loading'
 import { useGlobalState } from '@/store'
 import { useEffect } from 'react'
-import { Router, useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 
 export default function TopCom() {
-  const { setSphereAnime, setMainController, loadAnime } = useGlobalState((state) => state)
+  const { setSphereAnime, setMainController, loadAnime, mainController } = useGlobalState((state) => state)
   const router = useRouter()
   useEffect(() => {
     if (loadAnime) setSphereAnime(true)

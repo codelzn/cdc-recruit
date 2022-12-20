@@ -20,7 +20,6 @@ export default function Layout({ children }: Props) {
           type: 'tween',
           ease: 'linear',
           duration: 0.5,
-          delay: 0.1,
         }}>
         {children}
       </motion.div>
