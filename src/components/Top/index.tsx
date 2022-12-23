@@ -22,14 +22,9 @@ export default function TopCom() {
         <Header />
         <Catchcopy />
         <button
-          className='fixed bg-purple-300 border border-red-300 w-fit h-fit top-5 left-5'
+          className='fixed bg-purple-300 border border-red-300 w-fit h-fit bottom-5 left-5'
           onClick={() => setMainController(true)}>
           Active animation
-        </button>
-        <button
-          className='fixed bg-purple-300 border border-red-300 w-fit h-fit top-5 right-5'
-          onClick={() => router.push('/member')}>
-          To Member
         </button>
         <CanvasAnime />
       </div>

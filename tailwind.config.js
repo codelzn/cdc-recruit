@@ -6,6 +6,12 @@ module.exports = {
       margin: {
         'pc-m': '40px',
       },
+      colors: {
+        'cdc-blue': '#01A0E9',
+      },
+      lineHeight: {
+        'extra-loose': '2.5',
+      },
     },
   },
   variants: {

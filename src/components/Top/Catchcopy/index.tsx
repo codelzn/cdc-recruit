@@ -13,7 +13,6 @@ const textVariants = {
 export default function Catchcopy() {
   const { title } = useTopData((state) => state.catchcopy)
   const { moveAnime, textAnime } = useGlobalState((state) => state)
-
   return (
     <>
       <motion.h1

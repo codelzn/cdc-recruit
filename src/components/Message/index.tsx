@@ -6,14 +6,28 @@ export default function Message() {
   const moveAnime = useGlobalState((state) => state.moveAnime)
   return (
     <>
-      <motion.div
+      <motion.section
         layout
-        className={`relative h-[110%] overflow-hidden ${moveAnime ? '-mt-[14%]' : ''}`}
+        // className={`relative h-[110%] overflow-hidden ${moveAnime ? '-mt-[14%]' : ''}`}
+        className={`relative h-[110%] overflow-hidden`}
         transition={{ duration: 1 }}>
-        <div className='absolute w-4/5 h-full overflow-hidden rounded-3xl -right-6'>
-          <Image src={bgimg.url} alt='introduce' fill priority />
-        </div>
-      </motion.div>
+        <Image
+          src={bgimg.url}
+          width={bgimg.width}
+          height={bgimg.height}
+          alt='introduce'
+          priority
+          style={{ width: 'auto' }}
+          className='absolute h-full overflow-hidden rounded-xl -right-52'
+        />
+        <ul className='absolute bottom-0 p-10 text-4xl tracking-widest left-10 leading-extra-loose message_class w-fit'>
+          {description.map((text, index) => (
+            <li key={index}>
+              <p>{text}</p>
+            </li>
+          ))}
+        </ul>
+      </motion.section>
     </>
   )
 }
