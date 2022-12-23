@@ -18,6 +18,8 @@ export interface Member {
 
 export interface CurrentImg {
   url: string
+  width: number
+  height: number
 }
 
 export interface Interview {

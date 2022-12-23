@@ -7,10 +7,9 @@ type Props = {
 }
 
 export default function Layout({ children }: Props) {
-  const { route } = useRouter()
   return (
     <AnimatePresence mode='wait' initial={false} onExitComplete={() => window.scrollTo(0, 0)}>
-      <motion.div
+      {/* <motion.div
         className='h-full'
         key={route}
         initial={{ opacity: 0 }}
@@ -22,7 +21,8 @@ export default function Layout({ children }: Props) {
           duration: 0.5,
         }}>
         {children}
-      </motion.div>
+      </motion.div> */}
+      {children}
     </AnimatePresence>
   )
 }

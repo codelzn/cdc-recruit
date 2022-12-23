@@ -13,9 +13,13 @@ export const topQuery = gql`
     logoData {
       bigLogo {
         url
+        width
+        height
       }
       image {
         url
+        width
+        height
       }
       alt
       description
@@ -32,6 +36,8 @@ export const topQuery = gql`
       description
       bgimg {
         url
+        width
+        height
       }
     }
     # CDCとは
@@ -50,6 +56,8 @@ export const topQuery = gql`
       content
       img {
         url
+        width
+        height
       }
     }
     # CDCのキーワード
@@ -58,6 +66,8 @@ export const topQuery = gql`
       title
       img {
         url
+        width
+        height
       }
       subTitle
       nav
@@ -91,9 +101,13 @@ export const memberQuery = gql`
       year
       currentImg {
         url
+        width
+        height
       }
       nextImg {
         url
+        width
+        height
       }
       interviews {
         title
@@ -105,6 +119,8 @@ export const memberQuery = gql`
       }
       sidepic {
         url
+        width
+        height
       }
     }
   }

@@ -18,6 +18,8 @@ export interface Catchcopy {
 
 export interface Bgimg {
   url: string
+  width: number
+  height: number
 }
 
 export interface CdcDatum {
