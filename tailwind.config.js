@@ -13,6 +13,8 @@ module.exports = {
       },
       colors: {
         'cdc-blue': '#01A0E9',
+        'cdc-gray': '#4B4E51',
+        'gray-filter': 'rgba(0, 0, 0, 0.55)',
       },
       lineHeight: {
         'extra-loose': '2.5',

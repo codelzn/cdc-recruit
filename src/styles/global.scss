@@ -9,3 +9,28 @@
   background: #f3f2ee;
   box-shadow: 14px 14px 27px #cfceca, -14px -14px 27px #ffffff;
 }
+.btnarrow::before {
+  content: "";
+  box-sizing: content-box;
+  position: absolute;
+  top: 0;
+  right: -50%;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  padding: 2px;
+  border-bottom: 2px solid #ffffff;
+}
+.btnarrow::after {
+  content: "";
+  box-sizing: content-box;
+  position: absolute;
+  bottom: -4px;
+  right: -50%;
+  z-index: -1;
+  width: 1px;
+  height: 110%;
+  border-right: 2px solid #ffffff;
+  rotate: -45deg;
+  transform-origin: bottom right;
+}

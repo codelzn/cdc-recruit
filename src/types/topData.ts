@@ -51,11 +51,13 @@ export interface KeyContent {
 }
 
 export interface Keyword {
+  catchcopy: string[]
   title: string
   subTitle: string
   nav: string[]
   btnText: string
   btnLink: string
+  img: Bgimg
 }
 
 export interface LogoDatum {
