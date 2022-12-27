@@ -34,11 +34,13 @@ export interface CdcdataImg {
 }
 
 export interface Introduce {
+  midashi: string
   title: string
   text: string
   detailTitle: string
   details: string[]
   graphic: string[]
+  introimg: Bgimg
 }
 
 export interface KeyContent {

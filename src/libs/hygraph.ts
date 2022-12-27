@@ -42,11 +42,17 @@ export const topQuery = gql`
     }
     # CDCとは
     introduces {
+      midashi
       title
       text
       detailTitle
       details
       graphic
+      introimg {
+        url
+        width
+        height
+      }
     }
     # データで知るCDC
     cdcData {

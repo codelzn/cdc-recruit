@@ -20,7 +20,7 @@ export default function Message() {
           style={{ width: 'auto' }}
           className='absolute h-full overflow-hidden rounded-xl -right-52'
         />
-        <ul className='absolute bottom-0 p-10 text-4xl tracking-widest left-10 leading-extra-loose message_class w-fit'>
+        <ul className='absolute p-10 text-3xl tracking-widest bottom-10 left-10 leading-extra-loose message_class w-fit'>
           {description.map((text, index) => (
             <li key={index}>
               <p>{text}</p>
