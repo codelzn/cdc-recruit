@@ -8,18 +8,18 @@ export default function CompanyCom() {
       <section className='h-full px-10 pt-24'>
         <h2 className='text-4xl font-bold'>{midashi}</h2>
         <div className='flex justify-around mt-14'>
-          <div className='w-1/2'>
+          <div className='w-1/2 grid place-items-center'>
             <Image
               src={introimg.url}
               width={introimg.width}
               height={introimg.height}
-              alt={title}
+              alt={title[0]}
               priority
-              className='w-4/5 mx-auto'
+              className='w-4/5'
             />
           </div>
-          <div className='w-1/2 pl-5'>
-            <h3 className='pb-4 text-3xl border-b-2 border-black'>{title}</h3>
+          <div className='w-1/2 p-5 pl-5 neu_glass'>
+            <h3 className='pb-4 text-3xl border-b-2 border-black'>{title[0]}</h3>
             <p className='mt-6 leading-loose'>{text}</p>
             <h4 className='mt-6 text-2xl'>{detailTitle}</h4>
             <ul>

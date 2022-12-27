@@ -27,6 +27,7 @@ export interface CdcDatum {
   subTitle: string[]
   data: string[]
   content: string
+  img: Bgimg
 }
 
 export interface CdcdataImg {
@@ -35,7 +36,7 @@ export interface CdcdataImg {
 
 export interface Introduce {
   midashi: string
-  title: string
+  title: string[]
   text: string
   detailTitle: string
   details: string[]

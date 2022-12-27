@@ -1,6 +1,11 @@
-.message_class {
+.message_glass {
   background: rgba(217, 217, 217, 0.152);
   box-shadow: inset 54.2333px -54.2333px 54.2333px rgba(165, 165, 165, 0.152),
     inset -54.2333px 54.2333px 54.2333px rgba(255, 255, 255, 0.152);
   backdrop-filter: blur(6.508px);
+}
+
+.neu_glass {
+  background: #f3f2ee;
+  box-shadow: 14px 14px 27px #cfceca, -14px -14px 27px #ffffff;
 }
