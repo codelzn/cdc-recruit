@@ -34,3 +34,21 @@
   rotate: -45deg;
   transform-origin: bottom right;
 }
+.btn_maru,
+.btn_arrow {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.btn_maru {
+  background-image: url("../icon/circle.svg");
+}
+.btn_arrow {
+  height: 30px;
+  width: 26px;
+  background-image: url("../icon/arrow.svg");
+  background-size: contain;
+  background-position: center center;
+}

@@ -12,6 +12,7 @@ module.exports = {
         'pc-m': '40px',
       },
       colors: {
+        'cdc-white': '#f3f2ee',
         'cdc-blue': '#01A0E9',
         'cdc-gray': '#4B4E51',
         'gray-filter': 'rgba(0, 0, 0, 0.55)',

@@ -32,8 +32,14 @@ export default function KeywordCom() {
           ))}
         </ul>
       </div>
-      <div className='relative z-10 px-2 my-4 font-extrabold w-fit btnarrow'>NEXT</div>
-      <Link href={btnLink}>{btnText}</Link>
+      <div className='relative z-10 self-end px-2 my-4 mr-16 font-extrabold w-fit btnarrow'>NEXT</div>
+      <Link
+        className='flex items-center justify-around h-10 px-6 mx-auto text-black rounded-lg bg-cdc-white w-fit gap-6'
+        href={btnLink}>
+        <span className='btn_maru'></span>
+        <p>{btnText}</p>
+        <span className='btn_arrow'></span>
+      </Link>
     </section>
   )
 }
