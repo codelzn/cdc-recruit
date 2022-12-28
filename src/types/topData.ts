@@ -75,5 +75,8 @@ export interface Navigation {
 
 export interface Recruit {
   subtitle: string
-  contents: string[]
+  recruitdata: {
+    type: string
+    content: string
+  }[]
 }

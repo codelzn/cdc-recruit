@@ -88,7 +88,10 @@ export const topQuery = gql`
     # 採用情報
     recruits {
       subtitle
-      contents
+      recruitdata {
+        type
+        content
+      }
     }
   }
 `

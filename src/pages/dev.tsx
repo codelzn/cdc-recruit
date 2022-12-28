@@ -7,6 +7,7 @@ import Message from '@/components/Message'
 import CompanyCom from '@/components/Company'
 import CdcData from '@/components/CdcData'
 import KeywordCom from '@/components/Keyword'
+import RecruitCom from '@/components/Recruit'
 type Props = {
   topData: TopPageProps
 }
@@ -21,6 +22,7 @@ export default function Dev({ topData }: Props) {
       <CompanyCom />
       <CdcData />
       <KeywordCom />
+      <RecruitCom />
     </>
   )
 }
