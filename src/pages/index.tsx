@@ -2,24 +2,27 @@ import type { GetStaticProps } from 'next'
 import TopCom from '@/components/Top'
 import MessageCom from '@/components/Message'
 import CompanyCom from '@/components/Company'
+import CdcDataCom from '@/components/CdcData'
 import KeywordCom from '@/components/Keyword'
 import RecruitCom from '@/components/Recruit'
 import { getTopData } from '@/libs'
 import { TopPageProps } from '@/types'
 import { useTopData } from '@/store'
+import Footer from '@/components/ui/Footer'
 type Props = {
   topData: TopPageProps
 }
 export default function Page({ topData }: Props) {
-  const setTopData = useTopData((state) => state.setTopData)
-  setTopData(topData)
+  useTopData((state) => state.setTopData)(topData)
   return (
     <>
       <TopCom />
       <MessageCom />
       <CompanyCom />
+      <CdcDataCom />
       <KeywordCom />
       <RecruitCom />
+      <Footer />
     </>
   )
 }

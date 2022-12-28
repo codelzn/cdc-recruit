@@ -8,8 +8,8 @@ export default function Message() {
     <>
       <motion.section
         layout
-        // className={`relative h-[110%] overflow-hidden ${moveAnime ? '-mt-[14%]' : ''}`}
-        className={`relative h-[110%] overflow-hidden`}
+        className={`relative h-[110%] overflow-hidden ${moveAnime ? '-mt-[14%]' : ''}`}
+        // className={`relative h-[110%] overflow-hidden`}
         transition={{ duration: 1 }}>
         <Image
           src={bgimg.url}

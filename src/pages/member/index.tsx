@@ -9,8 +9,7 @@ type Props = {
 }
 
 export default function Page({ members }: Props) {
-  const setMemberData = useMemberData((state) => state.setMemberData)
-  setMemberData(members)
+  useMemberData((state) => state.setMemberData)(members)
   return <MemberCom />
 }
 

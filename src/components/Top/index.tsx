@@ -12,20 +12,20 @@ export default function TopCom() {
   useEffect(() => {
     if (loadAnime) setSphereAnime(true)
   }, [loadAnime])
-  // useEffect(() => {
-  //   setMainController(true)
-  // }, [])
+  useEffect(() => {
+    setMainController(true)
+  }, [])
   return (
     <>
       <div className='relative h-full overflow-hidden'>
         {!loadAnime && <Loading />}
         <Header />
         <Catchcopy />
-        <button
+        {/* <button
           className='fixed bg-purple-300 border border-red-300 w-fit h-fit bottom-5 left-5'
           onClick={() => setMainController(true)}>
           Active animation
-        </button>
+        </button> */}
         <CanvasAnime />
       </div>
     </>
