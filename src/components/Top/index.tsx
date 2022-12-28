@@ -1,4 +1,4 @@
-import Header from './Header'
+import Header from '../ui/Header'
 import Catchcopy from './Catchcopy'
 import CanvasAnime from './CanvasAnime'
 import Loading from './Loading'

@@ -4,7 +4,7 @@ export default function RecruitCom() {
   const recruits = useTopData((state) => state.recruits)
   return (
     <>
-      <section className='px-10 py-24 h-fit'>
+      <section className='px-10 pt-24 pb-16 h-fit'>
         <h2 className='text-4xl font-bold'>採用情報</h2>
         <ul className='flex flex-col px-5 py-6 mt-10 neu_glass gap-y-5'>
           {recruits.map((item, index) => (
@@ -34,7 +34,9 @@ export default function RecruitCom() {
             </li>
           ))}
         </ul>
-        <div className='mx-auto w-fit'>ENTRY</div>
+        <div className='px-10 py-2 mx-auto mt-16 text-4xl font-bold tracking-widest text-white rounded-lg w-fit bg-cdc-blue'>
+          ENTRY
+        </div>
       </section>
     </>
   )

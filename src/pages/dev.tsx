@@ -2,12 +2,13 @@ import { getTopData } from '@/libs'
 import { TopPageProps } from '@/types'
 import { GetStaticProps } from 'next'
 import { useTopData } from '@/store'
-import Header from '@/components/Top/Header'
+import Header from '@/components/ui/Header'
 import Message from '@/components/Message'
 import CompanyCom from '@/components/Company'
 import CdcData from '@/components/CdcData'
 import KeywordCom from '@/components/Keyword'
 import RecruitCom from '@/components/Recruit'
+import Footer from '@/components/ui/Footer'
 type Props = {
   topData: TopPageProps
 }
@@ -23,6 +24,7 @@ export default function Dev({ topData }: Props) {
       <CdcData />
       <KeywordCom />
       <RecruitCom />
+      <Footer />
     </>
   )
 }
