@@ -4,7 +4,7 @@ export default function RecruitCom() {
   const recruits = useTopData((state) => state.recruits)
   return (
     <>
-      <section className='px-10 pt-24 pb-16 h-fit'>
+      <section id='recruit' className='px-10 pt-24 pb-16 h-fit'>
         <h2 className='text-4xl font-bold'>採用情報</h2>
         <ul className='flex flex-col px-5 py-6 mt-10 neu_glass gap-y-5'>
           {recruits.map((item, index) => (

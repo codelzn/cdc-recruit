@@ -17,7 +17,7 @@ export default function TopCom() {
   }, [])
   return (
     <>
-      <div className='relative h-full overflow-hidden'>
+      <section id='top' className='relative h-full overflow-hidden'>
         {!loadAnime && <Loading />}
         <Header />
         <Catchcopy />
@@ -27,7 +27,7 @@ export default function TopCom() {
           Active animation
         </button> */}
         <CanvasAnime />
-      </div>
+      </section>
     </>
   )
 }

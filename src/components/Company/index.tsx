@@ -5,7 +5,7 @@ export default function CompanyCom() {
   const { midashi, title, text, detailTitle, details, introimg } = useTopData((state) => state.introduce)
   return (
     <>
-      <section className='h-full px-10 pt-24'>
+      <section id='company' className='h-full px-10 pt-24'>
         <h2 className='text-4xl font-bold'>{midashi}</h2>
         <div className='flex justify-around mt-14'>
           <div className='w-1/2 grid place-items-center'>

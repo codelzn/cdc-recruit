@@ -6,7 +6,7 @@ export default function KeywordCom() {
   const { img, catchcopy, title, subTitle, btnLink, btnText } = useTopData((state) => state.keyword)
   const keyContents = useTopData((state) => state.keyContents)
   return (
-    <section className='flex flex-col px-32 py-20 text-white h-fit bg-cdc-gray'>
+    <section id='keyword' className='flex flex-col px-32 py-20 text-white h-fit bg-cdc-gray'>
       <div className='relative w-full h-fit'>
         <Image src={img.url} width={img.width} height={img.height} alt={title} />
         <div className='absolute top-0 flex flex-col items-center justify-around w-full h-full bg-gray-filter'>
