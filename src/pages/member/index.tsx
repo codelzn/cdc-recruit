@@ -10,7 +10,11 @@ type Props = {
 
 export default function Page({ members }: Props) {
   useMemberData((state) => state.setMemberData)(members)
-  return <MemberCom />
+  return (
+    <div className='fixed top-0 left-0 w-full h-full'>
+      <MemberCom />
+    </div>
+  )
 }
 
 export const getStaticProps: GetStaticProps = async () => {
