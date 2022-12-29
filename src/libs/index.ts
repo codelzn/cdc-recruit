@@ -1,2 +1,2 @@
 export * from './hygraph'
-export * from './misc'
+export * from './utils'

@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import imagesLoaded from 'imagesloaded'
 
 const makeBuffer = (count = 100, fn: any, dimension = 3) => {
   const buffer = Float32Array.from({ length: count * dimension }, (v, k) => {
@@ -47,3 +48,15 @@ export const getPositionCentroids = (
 
   return centroidBuffer
 }
+
+export const getScreenFov = (z: number) => {
+  return THREE.MathUtils.radToDeg(2 * Math.atan(window.innerHeight / 2 / z))
+}
+
+export const preloadImages = (sel = 'div') => {
+  return new Promise((resolve) => {
+    imagesLoaded(sel, { background: true }, resolve)
+  })
+}
+
+export const sleep = (time: number) => new Promise((resolve) => setTimeout(resolve, time))

@@ -6,6 +6,7 @@ const nextConfig = {
   experimental: {},
   images: {
     domains: ['media.graphassets.com'],
+    unoptimized: true,
   },
   swcMinify: true,
   reactStrictMode: true,
