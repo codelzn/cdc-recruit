@@ -23,6 +23,7 @@ const GalleryMaterial = new THREE.ShaderMaterial({
   vertexShader,
   fragmentShader,
   side: THREE.DoubleSide,
+  transparent: true,
 })
 
 type GalleryMesh = THREE.Mesh<typeof GalleryGeometry, typeof GalleryMaterial>
@@ -35,7 +36,6 @@ function Gallery() {
   const [activeIndex, setActiveIndex] = useState(0)
   const members = useMemberData((state) => state.members)
   const textures = useTexture(members.map((member) => member.currentImg.url))
-  const block = useRef<HTMLDivElement>(null)
   const wrap = useRef<HTMLDivElement>(null)
   const divs = useRef<HTMLDivElement[]>([])
   const imgGroup = useRef<THREE.Group>(null)
@@ -103,16 +103,23 @@ function Gallery() {
   })
   return (
     <>
-      <group position-x={1} ref={imgGroup} rotation={[-0.2, -0.2, -0.1]}>
+      <group position-x={0.4} ref={imgGroup} rotation={[-0.2, -0.2, -0.1]}>
         {members.map((_, index) => (
-          <mesh rotation-y={-0.3} key={index} material={GalleryMaterial.clone()} geometry={GalleryGeometry} />
+          <mesh
+            rotation-y={-0.3}
+            key={index}
+            material={GalleryMaterial.clone()}
+            geometry={GalleryGeometry}
+            onClick={() => console.log(`${index} clicked`)}
+          />
         ))}
       </group>
-      <Html fullscreen>
+      <Html fullscreen className='relative'>
         <div ref={wrap}>
           {members.map((member, index) => (
             <div key={index} className={`n absolute w-[150px] h-[100px]`} style={{ top: index * 100 + 10 + 'px' }}>
               <Image
+                priority
                 src={member.currentImg.url}
                 alt={member.memberName}
                 width={member.currentImg.width}
@@ -122,7 +129,20 @@ function Gallery() {
             </div>
           ))}
         </div>
-        <div ref={block} className='w-24 h-24 bg-red-400'></div>
+        <div className='text-5xl ml-96 left-1/2'>
+          {members.filter((member, index) => index === activeIndex).map((m) => m.memberName)}
+        </div>
+        <ul className='absolute flex flex-col top-1/2 right-2 -translate-x-1/2 -translate-y-1/2 gap-5'>
+          {members.map((member, index) => (
+            <li
+              key={index}
+              className={`w-5 h-10 rounded-full ${
+                activeIndex === index ? 'text-red-600 text-2xl font-extrabold bg-orange-400' : 'bg-blue-500'
+              }`}>
+              {index}
+            </li>
+          ))}
+        </ul>
       </Html>
     </>
   )
@@ -132,7 +152,7 @@ export default function MemberCom() {
   return (
     <Canvas flat camera={{ position: [0, 0, 2] }}>
       <Suspense>
-        <Perf position='top-left' />
+        {/* <Perf position='top-left' /> */}
         <Gallery />
         <Preload all />
       </Suspense>
