@@ -556,9 +556,9 @@
   integrity sha512-POu8Mk0hIU3lRXB3bGIGe4VHIwwDsQyoD1F394OK7STTiX9w4dG3cTLljjYswkQN+hDSHRrj4O36kuVa7KPU8Q==
 
 "@react-three/drei@^9.40.0":
-  version "9.49.0"
-  resolved "https://registry.yarnpkg.com/@react-three/drei/-/drei-9.49.0.tgz#52e1002b35f82a308949aab9b09d236f290db0b8"
-  integrity sha512-SsqZMZkcu9gHXNJFas1Zo5aTIiDJqASs0GDVLftG9LEwGiI0qivquWJE+Wi/z2f/741VorcXJ67wMtnWIDcdAQ==
+  version "9.50.3"
+  resolved "https://registry.yarnpkg.com/@react-three/drei/-/drei-9.50.3.tgz#adf8ee11aae272b93ab204f797aaefb2480062e8"
+  integrity sha512-Px6kjbPbX9JfF7OK+Nobt7hwQ8slSsvvoao36awZtIhmM9O+AxCBGohFTMqOPiXxFIt7rsnyKtYlC+s993lJnA==
   dependencies:
     "@babel/runtime" "^7.11.2"
     "@react-spring/three" "^9.3.1"
@@ -1601,9 +1601,9 @@ eslint-config-next@^13.0.1:
     eslint-plugin-react-hooks "^4.5.0"
 
 eslint-config-prettier@^8.5.0:
-  version "8.5.0"
-  resolved "https://registry.npmjs.org/eslint-config-prettier/-/eslint-config-prettier-8.5.0.tgz#5a81680ec934beca02c7b1a61cf8ca34b66feab1"
-  integrity sha512-obmWKLUNCnhtQRKc+tmnYuQl0pFU1ibYJQ5BGhTVB08bHe9wC8qUeG7c08dj9XX+AuPj1YSGSQIHl1pnDHZR0Q==
+  version "8.6.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-8.6.0.tgz#dec1d29ab728f4fa63061774e1672ac4e363d207"
+  integrity sha512-bAF0eLpLVqP5oEVUFKpMA+NnRFICwn9X8B5jrR9FcqnYBuPbqWEjTEspPWMj5ye6czoSLDweCzSo3Ko7gGrZaA==
 
 eslint-html-parser@^1.0.1:
   version "1.0.1"
@@ -4248,9 +4248,9 @@ three-mesh-bvh@^0.5.19:
   integrity sha512-FlUt36cwYQBNSaet3Plxw0+Pi8CtTQNlM3K6Yltu65YGRNxe0hwdBhYWzhBacQX3NePp75ZZSskQBN7LrghRog==
 
 three-stdlib@^2.17.3, three-stdlib@^2.20.4:
-  version "2.21.4"
-  resolved "https://registry.yarnpkg.com/three-stdlib/-/three-stdlib-2.21.4.tgz#e977735dea667f04854d93c621403c5dff4a2766"
-  integrity sha512-DFieGFahnJk39mZEmDsgHyPleMRw0efD6DeNWFFeG/0dcTTaYutbFrfoBO5xZTlz7nuCdXP7VDNXx04Uk7ty4Q==
+  version "2.21.5"
+  resolved "https://registry.yarnpkg.com/three-stdlib/-/three-stdlib-2.21.5.tgz#d7a8ae6713d6c9193a06f81e181b7f4fcf6f8570"
+  integrity sha512-PzlbMFVApPjdFwNoTCnrH6r8J1rQw5Dn40qkHc8P+vVDj1czHOmCduYAA27bYwNNTcd+q3AWE+qutDrvvc5B2g==
   dependencies:
     "@babel/runtime" "^7.16.7"
     "@types/offscreencanvas" "^2019.6.4"

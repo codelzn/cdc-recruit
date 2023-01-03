@@ -9,7 +9,7 @@ export default function Header() {
     <motion.header
       layout
       // className={`h-16 flex items-center justify-between w-full`}
-      className={`h-16 flex items-center justify-between w-full ${moveAnime ? '' : '-mt-16'}`}
+      className={`fixed z-50 h-16 flex items-center justify-between w-full ${moveAnime ? '' : '-mt-16'}`}
       transition={{ duration: 1 }}>
       <div className='flex items-center'>
         <Image src={image.url} width={image.width} height={image.height} priority alt={alt} className='w-10 ml-pc-m' />

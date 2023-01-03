@@ -3,6 +3,7 @@ import MemberCom from '@/components/Member'
 import { getMemberData } from '@/libs'
 import type { Member } from '@/types'
 import { useMemberData } from '@/store'
+import Header from '@/components/ui/Header'
 
 type Props = {
   members: Member[]
@@ -11,9 +12,12 @@ type Props = {
 export default function Page({ members }: Props) {
   useMemberData((state) => state.setMemberData)(members)
   return (
-    <div className='fixed top-0 left-0 w-full h-full'>
-      <MemberCom />
-    </div>
+    <>
+      {/* <Header /> */}
+      <div className='fixed top-0 left-0 w-full h-full'>
+        <MemberCom />
+      </div>
+    </>
   )
 }
 
