@@ -48,10 +48,13 @@ function Gallery() {
   const imgGroup = useRef<THREE.Group>(null)
   // マウスホイールでスクロール
   useEffect(() => {
+    const isMemberMain = router.pathname === '/member'
     const updateScroll = (e: WheelEvent) => {
       speed += e.deltaY * 0.0002
     }
-    window.addEventListener('wheel', updateScroll, false)
+    if (isMemberMain) {
+      window.addEventListener('wheel', updateScroll, false)
+    }
     return () => window.removeEventListener('wheel', updateScroll, false)
   })
   // 画像の読み込み
@@ -148,7 +151,7 @@ function Gallery() {
     }
   }
   const toDetail = (index: number) => {
-    console.log(index)
+    router.push(`/member/${index}`)
   }
   return (
     <>
@@ -172,8 +175,8 @@ function Gallery() {
           {members.map((member, index) => (
             <li
               key={index}
-              className={`w-3 h-5 rounded-full ${
-                activeIndex === index ? 'text-2xl font-extrabold bg-cdc-gray' : 'bg-cdc-blue'
+              className={`w-3 h-6 rounded-full ${
+                activeIndex === index ? 'text-2xl font-extrabold bg-cdc-blue' : 'bg-cdc-gray'
               }`}
               onMouseOver={() => setAttractTo(index)}></li>
           ))}

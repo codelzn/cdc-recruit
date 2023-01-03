@@ -24,6 +24,7 @@ export default function Catchcopy() {
         <LayoutGroup>
           <motion.span
             layout
+            initial='hidden'
             animate={textAnime ? 'show' : 'hidden'}
             variants={textVariants}
             transition={{ duration: 1, opactiy: { ease: 'linear' } }}>
@@ -32,6 +33,7 @@ export default function Catchcopy() {
           <br />
           <motion.span
             layout
+            initial='hidden'
             animate={textAnime ? 'show' : 'hidden'}
             variants={textVariants}
             transition={{ duration: 1, opactiy: { ease: 'linear' } }}>
