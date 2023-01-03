@@ -1,10 +1,12 @@
 import { Suspense, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import * as THREE from 'three'
+import gsap from 'gsap'
 import { useMemberData } from '@/store'
 import { Preload, Html, useTexture } from '@react-three/drei'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Perf } from 'r3f-perf'
+import { useControls } from 'leva'
 
 import vertexShader from './shader/vertex.glsl'
 import fragmentShader from './shader/fragment.glsl'
@@ -34,9 +36,10 @@ let rounded = 0
 
 function Gallery() {
   const [activeIndex, setActiveIndex] = useState(0)
+  const [attract, setAttract] = useState(false)
+  const [attractTo, setAttractTo] = useState(0)
   const members = useMemberData((state) => state.members)
   const textures = useTexture(members.map((member) => member.currentImg.url))
-  const wrap = useRef<HTMLDivElement>(null)
   const divs = useRef<HTMLDivElement[]>([])
   const imgGroup = useRef<THREE.Group>(null)
   useEffect(() => {
@@ -53,9 +56,6 @@ function Gallery() {
       })
     }
   })
-  useEffect(() => {
-    console.log(activeIndex)
-  }, [activeIndex])
   useFrame((state, delta) => {
     if (divs.current.length === 0) {
       divs.current = Array.from(document.querySelectorAll('.n'))
@@ -90,10 +90,18 @@ function Gallery() {
     // Math.sign() 函数返回一个数字的符号，表示 number 是正数、负数还是零。
     // Math.pow() 函数返回基数（base）的指数（exponent）次幂，即 baseexponent。
     // position += diff * 0.01
-    position += Math.sign(diff) * Math.pow(Math.abs(diff), 0.7) * 0.008
-
-    if (wrap.current) {
-      wrap.current.style.transform = `translateY(-${Number(position.toFixed(2)) * 100}px)`
+    if (attract) {
+      position += (attractTo - position) * 0.05
+    } else {
+      position += Math.sign(diff) * Math.pow(Math.abs(diff), 0.7) * 0.008
+    }
+    // 边缘检测
+    if (position < 0) {
+      position += (0 - position) * 0.2
+      speed += (0 - speed) * 0.2
+    } else if (position > members.length - 1) {
+      position += (members.length - 1 - position) * 0.2
+      speed += (0 - speed) * 0.2
     }
     if (imgGroup.current) {
       imgGroup.current.children.forEach((child: GalleryMesh, index) => {
@@ -101,6 +109,42 @@ function Gallery() {
       })
     }
   })
+  const memberNavOpen = () => {
+    setAttract(true)
+    if (imgGroup.current) {
+      let rots = imgGroup.current.children.map((e) => e.rotation)
+      gsap.to(rots, {
+        duration: 0.3,
+        x: 0,
+        y: 0,
+        z: 0,
+      })
+      gsap.to(imgGroup.current.rotation, {
+        duration: 0.3,
+        x: -0.5,
+        y: 0,
+        z: 0,
+      })
+    }
+  }
+  const memberNavClose = () => {
+    setAttract(false)
+    if (imgGroup.current) {
+      let rots = imgGroup.current.children.map((e) => e.rotation)
+      gsap.to(imgGroup.current.rotation, {
+        duration: 0.3,
+        x: -0.2,
+        y: -0.2,
+        z: -0.1,
+      })
+      gsap.to(rots, {
+        duration: 0.3,
+        x: 0,
+        y: -0.3,
+        z: 0,
+      })
+    }
+  }
   return (
     <>
       <group position-x={0.4} ref={imgGroup} rotation={[-0.2, -0.2, -0.1]}>
@@ -115,30 +159,20 @@ function Gallery() {
         ))}
       </group>
       <Html fullscreen className='relative'>
-        <div ref={wrap}>
-          {members.map((member, index) => (
-            <div key={index} className={`n absolute w-[150px] h-[100px]`} style={{ top: index * 100 + 10 + 'px' }}>
-              <Image
-                priority
-                src={member.currentImg.url}
-                alt={member.memberName}
-                width={member.currentImg.width}
-                height={member.currentImg.height}
-                className='w-full h-full'
-              />
-            </div>
-          ))}
-        </div>
         <div className='text-5xl ml-96 left-1/2'>
           {members.filter((member, index) => index === activeIndex).map((m) => m.memberName)}
         </div>
-        <ul className='absolute flex flex-col top-1/2 right-2 -translate-x-1/2 -translate-y-1/2 gap-5'>
+        <ul
+          className='absolute flex flex-col top-1/2 right-2 -translate-x-1/2 -translate-y-1/2 gap-5'
+          onMouseEnter={() => memberNavOpen()}
+          onMouseLeave={() => memberNavClose()}>
           {members.map((member, index) => (
             <li
               key={index}
               className={`w-5 h-10 rounded-full ${
                 activeIndex === index ? 'text-red-600 text-2xl font-extrabold bg-orange-400' : 'bg-blue-500'
-              }`}>
+              }`}
+              onMouseOver={(e) => setAttractTo(index)}>
               {index}
             </li>
           ))}
