@@ -2,7 +2,7 @@ import { Suspense, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import * as THREE from 'three'
 import gsap from 'gsap'
-import { useMemberData } from '@/store'
+import { useGlobalState, useMemberData } from '@/store'
 import { Preload, Html, useTexture } from '@react-three/drei'
 import { Canvas, useFrame } from '@react-three/fiber'
 // import { Perf } from 'r3f-perf'
@@ -40,6 +40,7 @@ let rounded = 0
 
 function Gallery() {
   const members = useMemberData((state) => state.members)
+  const { memberDetailActive, setMemberDetailActive } = useGlobalState((state) => state)
   const router = useRouter()
   const [activeIndex, setActiveIndex] = useState(0)
   const [attract, setAttract] = useState(false)
@@ -151,6 +152,7 @@ function Gallery() {
     }
   }
   const toDetail = (index: number) => {
+    setMemberDetailActive(true)
     router.push(`/member/${index}`)
   }
   return (

@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useRouter } from 'next/router'
+import MemberLayout from './MemberLayout'
 
 type Props = {
   children: React.ReactNode
 }
 
 export default function Layout({ children }: Props) {
+  const { asPath } = useRouter()
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <AnimatePresence mode='wait' initial={false} onExitComplete={() => window.scrollTo(0, 0)}>
       {/* <motion.div
@@ -21,7 +27,7 @@ export default function Layout({ children }: Props) {
         }}>
         {children}
       </motion.div> */}
-      {children}
+      {asPath === '/' ? <>{children}</> : <MemberLayout>{children}</MemberLayout>}
     </AnimatePresence>
   )
 }

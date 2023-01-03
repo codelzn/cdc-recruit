@@ -15,9 +15,9 @@ export default function Page({ members }: Props) {
   const { id } = router.query
   return (
     <>
-      <div className='fixed top-0 left-0 w-full h-full -z-10'>
+      {/* <div className='fixed top-0 left-0 w-full h-full -z-10'>
         <MemberCom />
-      </div>
+      </div> */}
       <div className='w-full h-full bg-red-300 mt-[100vh]'></div>
     </>
   )

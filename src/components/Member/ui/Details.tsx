@@ -1,4 +1,4 @@
-import { useMemberData } from '@/store'
+import { useMemberData, useGlobalState } from '@/store'
 import Link from 'next/link'
 
 type Props = {
@@ -8,6 +8,7 @@ type Props = {
 export default function Details({ active = 0 }: Props) {
   const members = useMemberData((state) => state.members)
   const member = members[active]
+  const { memberDetailActive, setMemberDetailActive } = useGlobalState((state) => state)
   return (
     <>
       <h2 className='absolute text-4xl font-semibold leading-normal tracking-wider left-16 top-1/3'>
@@ -19,7 +20,7 @@ export default function Details({ active = 0 }: Props) {
         <p>{member.memberName}</p>
         <p className='text-xl'>{member.duties}</p>
       </div>
-      <Link href={`/member/${active}`}>
+      <Link href={`/member/${active}`} onClick={() => setMemberDetailActive(true)}>
         <div className='absolute flex items-center px-5 py-2 text-xl text-white rounded-lg -tracking-wide bg-cdc-gray left-16 bottom-[20%] gap-4'>
           <span>出会う</span>
           <span className='w-10 h-5'>

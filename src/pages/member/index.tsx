@@ -14,9 +14,9 @@ export default function Page({ members }: Props) {
   return (
     <>
       {/* <Header /> */}
-      <div className='fixed top-0 left-0 w-full h-full'>
+      {/* <div className='fixed top-0 left-0 w-full h-full'>
         <MemberCom />
-      </div>
+      </div> */}
     </>
   )
 }
