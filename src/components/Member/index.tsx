@@ -1,25 +1,25 @@
 import { Suspense, useEffect, useRef, useState } from 'react'
-import Image from 'next/image'
 import * as THREE from 'three'
 import gsap from 'gsap'
 import { useMemberData } from '@/store'
 import { Preload, Html, useTexture } from '@react-three/drei'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { Perf } from 'r3f-perf'
 import { useControls } from 'leva'
 
 import vertexShader from './shader/vertex.glsl'
 import fragmentShader from './shader/fragment.glsl'
 
-const gHeight = 1.3
+// 写真のサイズ
+const gHeight = 1.2
 const gWidth = gHeight * 1.5
 
+// 共通のジオメトリとマテリアル
 const GalleryGeometry = new THREE.PlaneGeometry(gWidth, gHeight, 32, 32)
-
 const GalleryMaterial = new THREE.ShaderMaterial({
   uniforms: {
     uTime: { value: 0 },
     uTexture: { value: null },
+    // 画像の中心からの距離（透明度設定）
     uDistanceCenter: { value: 0 },
   },
   vertexShader,
@@ -35,13 +35,13 @@ let position = 0
 let rounded = 0
 
 function Gallery() {
+  const members = useMemberData((state) => state.members)
   const [activeIndex, setActiveIndex] = useState(0)
   const [attract, setAttract] = useState(false)
   const [attractTo, setAttractTo] = useState(0)
-  const members = useMemberData((state) => state.members)
   const textures = useTexture(members.map((member) => member.currentImg.url))
-  const divs = useRef<HTMLDivElement[]>([])
   const imgGroup = useRef<THREE.Group>(null)
+  // マウスホイールでスクロール
   useEffect(() => {
     const updateScroll = (e: WheelEvent) => {
       speed += e.deltaY * 0.0002
@@ -49,6 +49,7 @@ function Gallery() {
     window.addEventListener('wheel', updateScroll, false)
     return () => window.removeEventListener('wheel', updateScroll, false)
   })
+  // 画像の読み込み
   useEffect(() => {
     if (imgGroup.current) {
       imgGroup.current.children.forEach((child: GalleryMesh, index) => {
@@ -56,19 +57,15 @@ function Gallery() {
       })
     }
   })
+  // 動画コントロール
   useFrame((state, delta) => {
-    if (divs.current.length === 0) {
-      divs.current = Array.from(document.querySelectorAll('.n'))
-    }
     let dists = Array(members.length).fill(0)
     position += speed
     speed *= 0.8
+    // 慣性アニメーション
     dists.forEach((dist, i) => {
       dist = Math.min(Math.abs(position - i), 1)
       dist = 1 - dist ** 2
-      if (divs.current.length > 0) {
-        divs.current[i].style.transform = `scale(${1 + 0.4 * dist})`
-      }
       const scale = 1 + 0.2 * dist
       if (imgGroup.current) {
         imgGroup.current.children.forEach((child: GalleryMesh, index) => {
@@ -86,16 +83,13 @@ function Gallery() {
     })
     rounded = Math.round(position)
     let diff = rounded - position
-    // 这里可以控制强度
-    // Math.sign() 函数返回一个数字的符号，表示 number 是正数、负数还是零。
-    // Math.pow() 函数返回基数（base）的指数（exponent）次幂，即 baseexponent。
-    // position += diff * 0.01
+    // ナビモード
     if (attract) {
       position += (attractTo - position) * 0.05
     } else {
       position += Math.sign(diff) * Math.pow(Math.abs(diff), 0.7) * 0.008
     }
-    // 边缘检测
+    // ずれないようにする
     if (position < 0) {
       position += (0 - position) * 0.2
       speed += (0 - speed) * 0.2
@@ -147,7 +141,7 @@ function Gallery() {
   }
   return (
     <>
-      <group position-x={0.4} ref={imgGroup} rotation={[-0.2, -0.2, -0.1]}>
+      <group position-x={0.8} ref={imgGroup} rotation={[-0.2, -0.2, -0.1]}>
         {members.map((_, index) => (
           <mesh
             rotation-y={-0.3}
@@ -158,8 +152,8 @@ function Gallery() {
           />
         ))}
       </group>
-      <Html fullscreen className='relative'>
-        <div className='text-5xl ml-96 left-1/2'>
+      <Html fullscreen className='relative grid place-items-center'>
+        <div className='text-5xl'>
           {members.filter((member, index) => index === activeIndex).map((m) => m.memberName)}
         </div>
         <ul
