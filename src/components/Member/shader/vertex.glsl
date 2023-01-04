@@ -8,9 +8,9 @@ void main() {
   vec2 u = (uv - vec2(0.5) * 0.9 + vec2(0.5));
   vec3 pos = position;
 
-  pos.y += sin(PI * u.x) * 0.02;
+  // pos.y += sin(PI * u.x) * 0.2;
   pos.z += sin(PI * u.x) * 0.02;
-  pos.y += sin(uTime * 0.3) * 0.02;
+  pos.y += sin(uTime * 0.3) * 0.01;
   u.y -= sin(uTime * 0.3) * 0.02;
 
   vec4 modelPosition = modelMatrix * vec4(pos, 1.0);

@@ -2,6 +2,7 @@ import { Suspense, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import * as THREE from 'three'
 import gsap from 'gsap'
+import { motion } from 'framer-motion'
 import { useGlobalState, useMemberData } from '@/store'
 import { Preload, Html, useTexture } from '@react-three/drei'
 import { Canvas, useFrame } from '@react-three/fiber'
@@ -38,6 +39,16 @@ let speed = 0
 let position = 0
 let rounded = 0
 
+// ulのアニメーション定義
+const ulVariants = {
+  show: {
+    opacity: 1,
+  },
+  hide: {
+    opacity: 0,
+  },
+}
+
 function Gallery() {
   const members = useMemberData((state) => state.members)
   const { memberDetailActive, setMemberDetailActive } = useGlobalState((state) => state)
@@ -48,11 +59,11 @@ function Gallery() {
   const textures = useTexture(members.map((member) => member.currentImg.url))
   const imgGroup = useRef<THREE.Group>(null)
   // マウスホイールでスクロール
+  const updateScroll = (e: WheelEvent) => {
+    speed += e.deltaY * 0.0002
+  }
   useEffect(() => {
     const isMemberMain = router.pathname === '/member'
-    const updateScroll = (e: WheelEvent) => {
-      speed += e.deltaY * 0.0002
-    }
     if (isMemberMain) {
       window.addEventListener('wheel', updateScroll, false)
     }
@@ -67,9 +78,50 @@ function Gallery() {
     }
   })
   useEffect(() => {
+    // メンバー詳細の表示してる場合
     if (memberDetailActive) {
+      window.removeEventListener('wheel', updateScroll, false)
+      imgGroup.current?.children.forEach((child: GalleryMesh, index) => {
+        // 他のmeshを非表示
+        if (index !== activeIndex) {
+          child.visible = false
+        }
+        // 選択中のmeshにアニメーションをかける
+        if (index === activeIndex) {
+          gsap.to(imgGroup.current?.rotation, {
+            duration: 0.5,
+            x: 0,
+            y: 0,
+            z: 0,
+          })
+          gsap.to(imgGroup.current?.position, {
+            duration: 0.5,
+            x: 0,
+            y: 0,
+            z: 0,
+          })
+          gsap.to(child.rotation, {
+            duration: 0.5,
+            x: 0,
+            y: 0,
+            z: 0,
+          })
+          gsap.to(child.position, {
+            duration: 0.5,
+            x: 0,
+            y: 0,
+            z: 0.9,
+          })
+          // imgGroup.current!.rotation.set(0, 0, 0)
+          // imgGroup.current!.position.set(0, 0, 0)
+          // child.rotation.set(0, 0, 0)
+          // child.position.set(0, 0, 1)
+        }
+      })
     } else {
-      document.title = '全体页面'
+      imgGroup.current?.children.forEach((child: GalleryMesh, index) => {
+        child.visible = true
+      })
     }
   }, [memberDetailActive])
   // 動画コントロール
@@ -157,6 +209,7 @@ function Gallery() {
       })
     }
   }
+  // メンバー詳細へ
   const toDetail = (index: number) => {
     setMemberDetailActive(true)
     router.push(`/member/${index}`)
@@ -176,8 +229,13 @@ function Gallery() {
       </group>
       <Html fullscreen className='relative'>
         <Details active={activeIndex} toDetail={() => toDetail(activeIndex)} />
-        <ul
-          className='absolute flex flex-col top-1/2 right-2 -translate-x-1/2 -translate-y-1/2 gap-5'
+        <motion.ul
+          variants={ulVariants}
+          animate={memberDetailActive ? 'hide' : 'show'}
+          transition={{ duration: 0.5 }}
+          className={`absolute flex flex-col top-1/2 right-2 -translate-x-1/2 -translate-y-1/2 gap-5 ${
+            memberDetailActive ? 'pointer-events-none' : ''
+          }`}
           onMouseEnter={() => memberNavOpen()}
           onMouseLeave={() => memberNavClose()}>
           {members.map((member, index) => (
@@ -188,7 +246,7 @@ function Gallery() {
               }`}
               onMouseOver={() => setAttractTo(index)}></li>
           ))}
-        </ul>
+        </motion.ul>
       </Html>
     </>
   )
