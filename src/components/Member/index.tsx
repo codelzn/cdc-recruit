@@ -49,6 +49,14 @@ const ulVariants = {
   },
 }
 
+const meshConfig = {
+  gPositionX: 0.8,
+  gRotationX: -0.2,
+  gRotationY: -0.2,
+  gRotationZ: -0.1,
+  iRotationY: -0.3,
+}
+
 function Gallery() {
   const members = useMemberData((state) => state.members)
   const { memberDetailActive, setMemberDetailActive } = useGlobalState((state) => state)
@@ -97,30 +105,41 @@ function Gallery() {
           gsap.to(imgGroup.current?.position, {
             duration: 0.5,
             x: 0,
-            y: 0,
-            z: 0,
           })
           gsap.to(child.rotation, {
             duration: 0.5,
-            x: 0,
             y: 0,
-            z: 0,
           })
           gsap.to(child.position, {
             duration: 0.5,
-            x: 0,
-            y: 0,
             z: 0.9,
           })
-          // imgGroup.current!.rotation.set(0, 0, 0)
-          // imgGroup.current!.position.set(0, 0, 0)
-          // child.rotation.set(0, 0, 0)
-          // child.position.set(0, 0, 1)
         }
       })
     } else {
+      // メンバー詳細から戻った場合
       imgGroup.current?.children.forEach((child: GalleryMesh, index) => {
         child.visible = true
+        if (index === activeIndex) {
+          gsap.to(imgGroup.current.rotation, {
+            duration: 0.5,
+            x: meshConfig.gRotationX,
+            y: meshConfig.gRotationY,
+            z: meshConfig.gRotationZ,
+          })
+          gsap.to(imgGroup.current.position, {
+            duration: 0.5,
+            x: meshConfig.gPositionX,
+          })
+          gsap.to(child.rotation, {
+            duration: 0.5,
+            y: meshConfig.iRotationY,
+          })
+          gsap.to(child.position, {
+            duration: 0.5,
+            z: 0,
+          })
+        }
       })
     }
   }, [memberDetailActive])
@@ -197,14 +216,14 @@ function Gallery() {
       let rots = imgGroup.current.children.map((e) => e.rotation)
       gsap.to(imgGroup.current.rotation, {
         duration: 0.3,
-        x: -0.2,
-        y: -0.2,
-        z: -0.1,
+        x: meshConfig.gRotationX,
+        y: meshConfig.gRotationY,
+        z: meshConfig.gRotationZ,
       })
       gsap.to(rots, {
         duration: 0.3,
         x: 0,
-        y: -0.3,
+        y: meshConfig.iRotationY,
         z: 0,
       })
     }
@@ -216,10 +235,13 @@ function Gallery() {
   }
   return (
     <>
-      <group position-x={0.8} ref={imgGroup} rotation={[-0.2, -0.2, -0.1]}>
+      <group
+        position-x={meshConfig.gPositionX}
+        ref={imgGroup}
+        rotation={[meshConfig.gRotationX, meshConfig.gRotationY, meshConfig.gRotationZ]}>
         {members.map((_, index) => (
           <mesh
-            rotation-y={-0.3}
+            rotation-y={meshConfig.iRotationY}
             key={index}
             material={GalleryMaterial.clone()}
             geometry={GalleryGeometry}
