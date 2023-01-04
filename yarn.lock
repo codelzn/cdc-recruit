@@ -556,14 +556,14 @@
   integrity sha512-POu8Mk0hIU3lRXB3bGIGe4VHIwwDsQyoD1F394OK7STTiX9w4dG3cTLljjYswkQN+hDSHRrj4O36kuVa7KPU8Q==
 
 "@react-three/drei@^9.40.0":
-  version "9.50.3"
-  resolved "https://registry.yarnpkg.com/@react-three/drei/-/drei-9.50.3.tgz#adf8ee11aae272b93ab204f797aaefb2480062e8"
-  integrity sha512-Px6kjbPbX9JfF7OK+Nobt7hwQ8slSsvvoao36awZtIhmM9O+AxCBGohFTMqOPiXxFIt7rsnyKtYlC+s993lJnA==
+  version "9.50.4"
+  resolved "https://registry.yarnpkg.com/@react-three/drei/-/drei-9.50.4.tgz#8217ec86b2ccd507a3134539df184ad9123c84c8"
+  integrity sha512-GcKbh4OjJo/0fwke2l/oqTz/swgTUbgVde+j8d9zFlSc2QCjsIaTz9vNDL2yN+fUKG+D7svZqxR5scX+s2Nd9A==
   dependencies:
     "@babel/runtime" "^7.11.2"
     "@react-spring/three" "^9.3.1"
     "@use-gesture/react" "^10.2.0"
-    detect-gpu "^5.0.1"
+    detect-gpu "^5.0.5"
     glsl-noise "^0.0.0"
     lodash.clamp "^4.0.3"
     lodash.omit "^4.5.0"
@@ -573,16 +573,16 @@
     react-merge-refs "^1.1.0"
     stats.js "^0.17.0"
     suspend-react "^0.0.8"
-    three-mesh-bvh "^0.5.19"
+    three-mesh-bvh "^0.5.21"
     three-stdlib "^2.20.4"
     troika-three-text "^0.47.1"
     utility-types "^3.10.0"
     zustand "^3.5.13"
 
 "@react-three/fiber@^8.9.0":
-  version "8.9.2"
-  resolved "https://registry.yarnpkg.com/@react-three/fiber/-/fiber-8.9.2.tgz#8a4ea350f057c53850097bd095280924d653bb13"
-  integrity sha512-uhDQvxUZ0M2SU/gAtY2tcEaa+Pp9JSDmSzm7Dw6q9/KMReqcImNLjPzkjVsWV5DKP7fELC6c4Bgs9sVIahM6LQ==
+  version "8.10.0"
+  resolved "https://registry.yarnpkg.com/@react-three/fiber/-/fiber-8.10.0.tgz#bf979bc98184fb24724720de519b6b3918200fe5"
+  integrity sha512-veyvW9clPjS0oQ4g8e2E8yW3v8C2wcXhJp3VyTgjzhpKYAL0xq0+aiofHdpNjx/CiqlR25mYyFky6HskWP3B5w==
   dependencies:
     "@babel/runtime" "^7.17.8"
     "@types/react-reconciler" "^0.26.7"
@@ -1354,7 +1354,7 @@ dequal@^2.0.2:
   resolved "https://registry.yarnpkg.com/dequal/-/dequal-2.0.3.tgz#2644214f1997d39ed0ee0ece72335490a7ac67be"
   integrity sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==
 
-detect-gpu@^5.0.1:
+detect-gpu@^5.0.5:
   version "5.0.5"
   resolved "https://registry.yarnpkg.com/detect-gpu/-/detect-gpu-5.0.5.tgz#92eb6f218ba578dac6a4a892c8a1214ef0bdcf88"
   integrity sha512-gKBKx8mj0Fi/8DnjuzxU+aNYF1yWvPxtiOV9o72539wW0HP3ZTJVol/0FUasvdxIY1Bhi19SwIINqXGO+RB/sA==
@@ -4242,10 +4242,10 @@ three-custom-shader-material@^5.0.0:
     textdiff-create "^1.0.9"
     textdiff-patch "^1.0.9"
 
-three-mesh-bvh@^0.5.19:
-  version "0.5.20"
-  resolved "https://registry.yarnpkg.com/three-mesh-bvh/-/three-mesh-bvh-0.5.20.tgz#2d36e31cae49af259c9bd2d090adf4230c9625e3"
-  integrity sha512-FlUt36cwYQBNSaet3Plxw0+Pi8CtTQNlM3K6Yltu65YGRNxe0hwdBhYWzhBacQX3NePp75ZZSskQBN7LrghRog==
+three-mesh-bvh@^0.5.21:
+  version "0.5.21"
+  resolved "https://registry.yarnpkg.com/three-mesh-bvh/-/three-mesh-bvh-0.5.21.tgz#e08f5f3052d624cce36d0975692949c02359832f"
+  integrity sha512-TGXPk7YwtlU5rgQJYA25OT6yAdBMeekfC4BTkGNtTWA5glb2rmEpjxvhZncRQSl73QZir2LFOQT0FjfzgG55xw==
 
 three-stdlib@^2.17.3, three-stdlib@^2.20.4:
   version "2.21.5"

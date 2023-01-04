@@ -66,6 +66,12 @@ function Gallery() {
       })
     }
   })
+  useEffect(() => {
+    if (memberDetailActive) {
+    } else {
+      document.title = '全体页面'
+    }
+  }, [memberDetailActive])
   // 動画コントロール
   useFrame((state, delta) => {
     let dists = Array(members.length).fill(0)
@@ -169,7 +175,7 @@ function Gallery() {
         ))}
       </group>
       <Html fullscreen className='relative'>
-        <Details active={activeIndex} />
+        <Details active={activeIndex} toDetail={() => toDetail(activeIndex)} />
         <ul
           className='absolute flex flex-col top-1/2 right-2 -translate-x-1/2 -translate-y-1/2 gap-5'
           onMouseEnter={() => memberNavOpen()}

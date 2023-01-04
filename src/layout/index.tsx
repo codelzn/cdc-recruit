@@ -9,6 +9,7 @@ type Props = {
 
 export default function Layout({ children }: Props) {
   const { asPath } = useRouter()
+  const pathname = asPath.split('#')[0]
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -27,7 +28,7 @@ export default function Layout({ children }: Props) {
         }}>
         {children}
       </motion.div> */}
-      {asPath === '/' ? <>{children}</> : <MemberLayout>{children}</MemberLayout>}
+      {pathname === '/' ? <>{children}</> : <MemberLayout>{children}</MemberLayout>}
     </AnimatePresence>
   )
 }
