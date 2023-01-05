@@ -13,7 +13,6 @@ export interface Member {
   nextImg: CurrentImg
   interviews: Interview[]
   schedule: Schedule | null
-  sidepic: CurrentImg[]
 }
 
 export interface CurrentImg {
@@ -25,6 +24,7 @@ export interface CurrentImg {
 export interface Interview {
   title: string[]
   content: string
+  sidepic: CurrentImg
 }
 
 export interface Schedule {

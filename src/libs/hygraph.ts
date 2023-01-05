@@ -121,15 +121,15 @@ export const memberQuery = gql`
       interviews {
         title
         content
+        sidepic {
+          url
+          width
+          height
+        }
       }
       schedule {
         times
         contents
-      }
-      sidepic {
-        url
-        width
-        height
       }
     }
   }

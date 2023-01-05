@@ -18,9 +18,9 @@ export default function Page({ members }: Props) {
   return (
     <>
       <div
-        className='w-32 h-20 text-3xl font-extrabold bg-cdc-blue grid place-items-center'
+        className='fixed top-0 left-0 w-32 h-20 text-3xl font-extrabold cursor-pointer bg-cdc-blue grid place-items-center'
         onClick={() => router.back()}>
-        BACK
+        BACK（仮）
       </div>
       <div className='w-full h-full mt-[100vh]'>
         <MemDetail mData={currentMember} />

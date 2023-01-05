@@ -11,14 +11,7 @@ type Props = {
 
 export default function Page({ members }: Props) {
   useMemberData((state) => state.setMemberData)(members)
-  return (
-    <>
-      {/* <Header /> */}
-      {/* <div className='fixed top-0 left-0 w-full h-full'>
-        <MemberCom />
-      </div> */}
-    </>
-  )
+  return null
 }
 
 export const getStaticProps: GetStaticProps = async () => {
