@@ -12,7 +12,7 @@ import Footer from '@/components/ui/Footer'
 type Props = {
   topData: TopPageProps
 }
-export default function Page({ topData }: Props) {
+export default function TopPage({ topData }: Props) {
   useTopData((state) => state.setTopData)(topData)
   return (
     <>

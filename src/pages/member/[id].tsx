@@ -1,20 +1,25 @@
 import { useRouter } from 'next/router'
 import MemDetail from '@/components/MemDetail'
-import { GetStaticPaths, GetStaticProps } from 'next'
+import next, { GetStaticPaths, GetStaticProps } from 'next'
 import { getMemberData } from '@/libs'
 import { useMemberData } from '@/store'
 import { Member } from '@/types'
+import { useEffect } from 'react'
 
 type Props = {
   members: Member[]
 }
 
-export default function Page({ members }: Props) {
-  useMemberData((state) => state.setMemberData)(members)
-  const allMembers = useMemberData((state) => state.members)
+export default function MDtails({ members }: Props) {
+  const setMemberData = useMemberData((state) => state.setMemberData)
+  const allMembers = members
   const router = useRouter()
   const { id } = router.query
   const currentMember = allMembers[Number(id)]
+  const nextMember = allMembers[Number(id) === 5 ? 0 : Number(id) + 1]
+  useEffect(() => {
+    setMemberData(members)
+  })
   return (
     <>
       <div
@@ -23,7 +28,7 @@ export default function Page({ members }: Props) {
         BACK（仮）
       </div>
       <div className='w-full h-full mt-[100vh]'>
-        <MemDetail mData={currentMember} />
+        <MemDetail mData={currentMember} nData={nextMember} />
       </div>
     </>
   )

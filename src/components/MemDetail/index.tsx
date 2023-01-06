@@ -1,15 +1,12 @@
 import { type Member } from '@/types'
 import Image from 'next/image'
-import { useMemberData } from '@/store'
 
 type Props = {
   mData: Member
+  nData: Member
 }
 
-function MemDetail({ mData }: Props) {
-  const members = useMemberData((state) => state.members)
-  const nextKey = (mData.key = members.length ? 1 : mData.key + 1)
-  const nextMember = members.filter((member) => member.key === nextKey)[0]
+function MemDetail({ mData, nData }: Props) {
   return (
     <>
       <ul className='flex flex-col items-center w-full py-20 h-fit bg-cdc-white gap-20'>
@@ -75,17 +72,17 @@ function MemDetail({ mData }: Props) {
           <div className='absolute text-4xl font-semibold top-3 left-10'>NEXT</div>
           <div className='absolute text-4xl top-1/2'>
             <p>
-              {nextMember.catchphrase[0]}
+              {nData.catchphrase[0]}
               <br />
-              {nextMember.catchphrase[1]}
+              {nData.catchphrase[1]}
             </p>
-            <p>{nextMember.memberName}</p>
+            <p>{nData.memberName}</p>
           </div>
           <Image
             src={mData.nextImg.url}
             width={mData.nextImg.width}
             height={mData.nextImg.height}
-            alt={`${nextMember.memberName}の写真`}
+            alt={`${nData.memberName}の写真`}
             className='object-cover object-top w-full h-auto mx-auto'
           />
         </div>

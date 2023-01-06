@@ -1,5 +1,4 @@
 import type { GetStaticProps } from 'next'
-import MemberCom from '@/components/Member'
 import { getMemberData } from '@/libs'
 import type { Member } from '@/types'
 import { useMemberData } from '@/store'
@@ -9,7 +8,7 @@ type Props = {
   members: Member[]
 }
 
-export default function Page({ members }: Props) {
+export default function MemberPage({ members }: Props) {
   useMemberData((state) => state.setMemberData)(members)
   return null
 }
