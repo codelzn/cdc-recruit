@@ -19,6 +19,7 @@ export default function Details({ active = 0, toDetail }: Props) {
   const members = useMemberData((state) => state.members)
   const member = members[active]
   const { memberDetailActive, setMemberDetailActive } = useGlobalState((state) => state)
+  if (!member) return null
   return (
     <>
       <h2 className='absolute text-4xl font-semibold leading-normal tracking-wider left-16 top-1/3'>

@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
+import { Suspense, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import * as THREE from 'three'
 import gsap from 'gsap'
@@ -6,8 +6,6 @@ import { motion } from 'framer-motion'
 import { useGlobalState, useMemberData } from '@/store'
 import { Preload, Html, useTexture } from '@react-three/drei'
 import { Canvas, useFrame } from '@react-three/fiber'
-// import { Perf } from 'r3f-perf'
-import { useControls } from 'leva'
 
 import vertexShader from './shader/vertex.glsl'
 import fragmentShader from './shader/fragment.glsl'
@@ -292,7 +290,6 @@ export default function MemberCom() {
   return (
     <Canvas flat camera={{ position: [0, 0, 2] }}>
       <Suspense>
-        {/* <Perf position='top-left' /> */}
         <Gallery />
         <Preload all />
       </Suspense>

@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import MemDetail from '@/components/MemDetail'
-import next, { GetStaticPaths, GetStaticProps } from 'next'
+import { GetStaticPaths, GetStaticProps } from 'next'
 import { getMemberData } from '@/libs'
 import { useMemberData } from '@/store'
 import { Member } from '@/types'
