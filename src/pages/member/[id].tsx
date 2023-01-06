@@ -13,10 +13,9 @@ type Props = {
 export default function MDtails({ members }: Props) {
   const setMemberData = useMemberData((state) => state.setMemberData)
   const allMembers = members
-  const router = useRouter()
-  const { id } = router.query
+  const { id } = useRouter().query
   const currentMember = allMembers[Number(id)]
-  const nextMember = allMembers[Number(id) === 5 ? 0 : Number(id) + 1]
+  const nextMember = allMembers[Number(id) === allMembers.length - 1 ? 0 : Number(id) + 1]
   useEffect(() => {
     setMemberData(members)
   })

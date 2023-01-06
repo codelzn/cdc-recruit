@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useRef, useState } from 'react'
+import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import * as THREE from 'three'
 import gsap from 'gsap'
@@ -61,6 +61,7 @@ function Gallery() {
   const members = useMemberData((state) => state.members)
   const { memberDetailActive, setMemberDetailActive } = useGlobalState((state) => state)
   const router = useRouter()
+  const mIndex = Number(router.query.id)
   const [activeIndex, setActiveIndex] = useState(0)
   const [attract, setAttract] = useState(false)
   const [attractTo, setAttractTo] = useState(0)
@@ -116,33 +117,36 @@ function Gallery() {
           })
         }
       })
-    } else {
+    } else if (!memberDetailActive && !attract) {
       // メンバー詳細から戻った場合
       imgGroup.current?.children.forEach((child: GalleryMesh, index) => {
         child.visible = true
-        if (index === activeIndex) {
-          gsap.to(imgGroup.current.rotation, {
-            duration: 0.5,
-            x: meshConfig.gRotationX,
-            y: meshConfig.gRotationY,
-            z: meshConfig.gRotationZ,
-          })
-          gsap.to(imgGroup.current.position, {
-            duration: 0.5,
-            x: meshConfig.gPositionX,
-          })
-          gsap.to(child.rotation, {
-            duration: 0.5,
-            y: meshConfig.iRotationY,
-          })
-          gsap.to(child.position, {
-            duration: 0.5,
-            z: 0,
-          })
-        }
+        gsap.to(imgGroup.current.rotation, {
+          duration: 0.5,
+          x: meshConfig.gRotationX,
+          y: meshConfig.gRotationY,
+          z: meshConfig.gRotationZ,
+        })
+        gsap.to(imgGroup.current.position, {
+          duration: 0.5,
+          x: meshConfig.gPositionX,
+        })
+        gsap.to(child.rotation, {
+          duration: 0.5,
+          y: meshConfig.iRotationY,
+        })
+        gsap.to(child.position, {
+          duration: 0.5,
+          z: 0,
+        })
       })
     }
-  }, [memberDetailActive])
+    imgGroup.current?.children.forEach((child: GalleryMesh, index) => {
+      if (index === activeIndex) {
+        child.visible = true
+      }
+    })
+  }, [memberDetailActive, activeIndex])
   // 動画コントロール
   useFrame((state, delta) => {
     let dists = Array(members.length).fill(0)
@@ -170,7 +174,7 @@ function Gallery() {
         setActiveIndex(activeIdx)
       }
     })
-    rounded = Math.round(position)
+    rounded = Math.abs(Math.round(position))
     let diff = rounded - position
     // ナビモード
     if (attract) {
@@ -178,8 +182,12 @@ function Gallery() {
     } else {
       position += Math.sign(diff) * Math.pow(Math.abs(diff), 0.7) * 0.008
     }
-    // ずれないようにする
+    // メンバー詳細の表示してる場合
+    if (!isNaN(mIndex) && mIndex !== activeIndex) {
+      position = mIndex
+    }
     if (position < 0) {
+      // ずれないようにする
       position += (0 - position) * 0.2
       speed += (0 - speed) * 0.2
     } else if (position > members.length - 1) {
@@ -233,6 +241,12 @@ function Gallery() {
     setMemberDetailActive(true)
     router.push(`/member/${index}`)
   }
+  const meshClick = (index: number) => {
+    if (index === activeIndex) {
+      setMemberDetailActive(true)
+      router.push(`/member/${index}`)
+    }
+  }
   return (
     <>
       <group
@@ -245,7 +259,7 @@ function Gallery() {
             key={index}
             material={GalleryMaterial.clone()}
             geometry={GalleryGeometry}
-            onClick={() => toDetail(index)}
+            onClick={() => meshClick(index)}
           />
         ))}
       </group>

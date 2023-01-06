@@ -1,7 +1,7 @@
 import type { GetStaticProps } from 'next'
 import { getMemberData } from '@/libs'
 import type { Member } from '@/types'
-import { useMemberData } from '@/store'
+import { useGlobalState, useMemberData } from '@/store'
 import Header from '@/components/ui/Header'
 
 type Props = {
