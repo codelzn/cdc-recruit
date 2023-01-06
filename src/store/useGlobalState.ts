@@ -15,8 +15,10 @@ type GlobalState = {
   setSphereAnime: (value: boolean) => void
 
   // member page animation controller state
+  activeMember: number
   memberDetailActive: boolean
   setMemberDetailActive: (value: boolean) => void
+  setActiveMember: (value: number) => void
 }
 
 export const useGlobalState = create(
@@ -33,9 +35,13 @@ export const useGlobalState = create(
     setTextAnime: (value: boolean) => set({ textAnime: value }),
     setLoadAnime: (value: boolean) => set({ loadAnime: value }),
     // member page animation controller state
+    activeMember: 0,
     memberDetailActive: false,
     setMemberDetailActive(value) {
       set({ memberDetailActive: value })
+    },
+    setActiveMember(value) {
+      set({ activeMember: value })
     },
   })),
 )

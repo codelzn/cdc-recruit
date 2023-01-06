@@ -1,5 +1,7 @@
 import { type Member } from '@/types'
 import Image from 'next/image'
+import Footer from '../ui/Footer'
+import { useRouter } from 'next/router'
 
 type Props = {
   mData: Member
@@ -7,16 +9,25 @@ type Props = {
 }
 
 function MemDetail({ mData, nData }: Props) {
+  const router = useRouter()
+  const toNext = () => {
+    const next = mData.key === 6 ? 0 : mData.key
+    router.push(`/member/${next}`)
+  }
+  const toMemberIndex = () => {
+    router.push('/member')
+  }
   return (
     <>
+      {/* インタビュー */}
       <ul className='flex flex-col items-center w-full py-20 h-fit bg-cdc-white gap-20'>
         {mData.interviews.map((interview, index) => (
-          <li key={index} className='relative flex flex-col w-4/5 px-10'>
-            <div className='absolute top-0 flex items-start text-4xl -left-24 gap-2'>
+          <li key={index} className='relative flex flex-col items-center w-4/5 px-10'>
+            <div className='absolute top-0 left-0 flex items-start text-4xl gap-2'>
               <i className='text-xl font-blod'>#</i>
               <span>0{index + 1}</span>
             </div>
-            <h3 className='mb-10 text-4xl font-semibold leading-normal tracking-wider'>
+            <h3 className='w-4/5 mb-10 text-4xl font-semibold leading-normal tracking-wider'>
               {interview.title[0]}
               {interview.title[1] ? (
                 <>
@@ -38,6 +49,7 @@ function MemDetail({ mData, nData }: Props) {
           </li>
         ))}
       </ul>
+      {/* スケジュール（あったら） */}
       {!!mData.schedule && (
         <div className='w-full pb-20 grid place-items-center h-fit bg-cdc-white'>
           <div className='flex flex-col w-4/5 mx-auto bg-cdc-white h-fit'>
@@ -67,16 +79,27 @@ function MemDetail({ mData, nData }: Props) {
           </div>
         </div>
       )}
+      {/* 次の人 */}
       <div className='w-full h-fit bg-cdc-white'>
         <div className='relative w-4/5 mx-auto'>
-          <div className='absolute text-4xl font-semibold top-3 left-10'>NEXT</div>
-          <div className='absolute text-4xl top-1/2'>
-            <p>
+          <div className='absolute text-6xl font-semibold top-3 left-10'>NEXT</div>
+          <div className='absolute flex flex-col text-4xl left-16 top-1/2 -translate-y-1/2 gap-5'>
+            <p className='font-medium leading-normal'>
               {nData.catchphrase[0]}
               <br />
               {nData.catchphrase[1]}
             </p>
-            <p>{nData.memberName}</p>
+            <p className='text-2xl'>{nData.memberName}</p>
+            <div
+              className='flex items-center px-5 py-2 text-xl text-white rounded-lg -tracking-wide bg-cdc-gray gap-4 w-fit'
+              onClick={() => toNext()}>
+              <span>出会う</span>
+              <span className='w-10 h-5'>
+                <svg fill='#fff' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 243.58'>
+                  <path d='M373.57 0 512 120.75 371.53 243.58l-20.92-23.91 94.93-83L0 137.09v-31.75l445.55-.41-92.89-81.02z' />
+                </svg>
+              </span>
+            </div>
           </div>
           <Image
             src={mData.nextImg.url}
@@ -87,6 +110,16 @@ function MemDetail({ mData, nData }: Props) {
           />
         </div>
       </div>
+      {/* 一覧に戻る */}
+      <div className='flex items-center justify-center w-full h-16 text-2xl text-white bg-cdc-gray gap-10' onClick={() => toMemberIndex()}>
+        <span className='w-10 h-5 rotate-180'>
+          <svg fill='#fff' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 243.58'>
+            <path d='M373.57 0 512 120.75 371.53 243.58l-20.92-23.91 94.93-83L0 137.09v-31.75l445.55-.41-92.89-81.02z' />
+          </svg>
+        </span>
+        <span>一覧に戻る</span>
+      </div>
+      <Footer />
     </>
   )
 }
