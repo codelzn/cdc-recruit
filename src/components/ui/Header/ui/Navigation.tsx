@@ -1,9 +1,40 @@
 import React from 'react'
 import Link from 'next/link'
-import { useTopData } from '@/store'
+
+const navigations = [
+  {
+    order: 1,
+    title: 'トップ',
+    to: '/#top',
+  },
+  {
+    order: 2,
+    title: 'CDCを知る',
+    to: '/#company',
+  },
+  {
+    order: 3,
+    title: 'CDCのキーワード',
+    to: '/#keyword',
+  },
+  {
+    order: 4,
+    title: '優秀な人達を知る',
+    to: '/member',
+  },
+  {
+    order: 5,
+    title: '採用情報',
+    to: '/#recruit',
+  },
+  {
+    order: 6,
+    title: 'ENTRY',
+    to: 'https://job.mynavi.jp/24/pc/search/corp71482/outline.html',
+  },
+]
 
 function Navigation() {
-  const navigations = useTopData((state) => state.navigations)
   return (
     <nav className='block w-fit mr-pc-m h-3/5'>
       <ul className='flex items-center h-full text-base font-semibold gap-8'>

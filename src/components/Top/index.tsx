@@ -8,7 +8,6 @@ import { useRouter } from 'next/router'
 
 export default function TopCom() {
   const { setSphereAnime, setMainController, loadAnime, mainController } = useGlobalState((state) => state)
-  const router = useRouter()
   useEffect(() => {
     if (loadAnime) setSphereAnime(true)
   }, [loadAnime])
@@ -19,13 +18,7 @@ export default function TopCom() {
     <>
       <section id='top' className='relative h-full overflow-hidden'>
         {!loadAnime && <Loading />}
-        <Header />
         <Catchcopy />
-        {/* <button
-          className='fixed bg-purple-300 border border-red-300 w-fit h-fit bottom-5 left-5'
-          onClick={() => setMainController(true)}>
-          Active animation
-        </button> */}
         <CanvasAnime />
       </section>
     </>

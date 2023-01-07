@@ -9,6 +9,7 @@ import { getTopData } from '@/libs'
 import { TopPageProps } from '@/types'
 import { useTopData } from '@/store'
 import Footer from '@/components/ui/Footer'
+import Header from '@/components/ui/Header'
 type Props = {
   topData: TopPageProps
 }
@@ -16,6 +17,7 @@ export default function TopPage({ topData }: Props) {
   useTopData((state) => state.setTopData)(topData)
   return (
     <>
+      <Header />
       <TopCom />
       <MessageCom />
       <CompanyCom />

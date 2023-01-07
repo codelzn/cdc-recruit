@@ -33,7 +33,9 @@ export default function TorusAnime({ active = false }: Props) {
         torusGeometry.dispose()
         torusGeometry = null
         torusGeometry = new THREE.TorusGeometry(torusProps.radius, 0.016, 15, 50)
-        torusRef.current.geometry = torusGeometry
+        if (torusRef.current) {
+          torusRef.current.geometry = torusGeometry
+        }
       },
     })
     tl.to(
@@ -53,7 +55,9 @@ export default function TorusAnime({ active = false }: Props) {
         torusGeometry.dispose()
         torusGeometry = null
         torusGeometry = new THREE.TorusGeometry(torusProps.radius, 0.016, 15, 50)
-        torusRef.current.geometry = torusGeometry
+        if (torusRef.current) {
+          torusRef.current.geometry = torusGeometry
+        }
       },
     })
     tl.to(

@@ -5,6 +5,7 @@ import { getMemberData } from '@/libs'
 import { useMemberData } from '@/store'
 import { Member } from '@/types'
 import { useEffect } from 'react'
+import Header from '@/components/ui/Header'
 
 type Props = {
   members: Member[]

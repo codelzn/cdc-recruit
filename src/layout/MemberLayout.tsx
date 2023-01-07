@@ -1,4 +1,5 @@
 import MemberCom from '@/components/Member'
+import Header from '@/components/ui/Header'
 import { useGlobalState } from '@/store'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
@@ -19,6 +20,7 @@ export default function MemberLayout({ children }: Props) {
   }, [asPath])
   return (
     <>
+      <Header />
       <div className={`fixed top-0 left-0 w-full h-full ${memberDetailActive ? '-z-10' : ''}`}>
         <MemberCom />
       </div>
