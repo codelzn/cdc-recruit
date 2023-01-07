@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       margin: {
         'pc-m': '40px',
+        'sp-m': '20px',
       },
       colors: {
         'cdc-white': '#f3f2ee',

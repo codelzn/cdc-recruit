@@ -12,7 +12,7 @@ export default function MemberLayout({ children }: Props) {
   const { memberDetailActive, setMemberDetailActive } = useGlobalState((state) => state)
   const { asPath } = useRouter()
   useEffect(() => {
-    if (asPath === '/member') {
+    if (asPath === '/member' || asPath === '/member/') {
       setMemberDetailActive(false)
     } else {
       setMemberDetailActive(true)

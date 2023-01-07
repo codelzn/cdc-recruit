@@ -2,7 +2,6 @@ import type { GetStaticProps } from 'next'
 import { getMemberData } from '@/libs'
 import type { Member } from '@/types'
 import { useGlobalState, useMemberData } from '@/store'
-import Header from '@/components/ui/Header'
 
 type Props = {
   members: Member[]
