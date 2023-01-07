@@ -1,5 +1,6 @@
 import { LayoutGroup, motion } from 'framer-motion'
 import { useTopData, useGlobalState } from '@/store'
+import { useDeviceType } from '@/hooks'
 
 const textVariants = {
   hidden: {
@@ -13,13 +14,14 @@ const textVariants = {
 export default function Catchcopy() {
   const { title } = useTopData((state) => state.catchcopy)
   const { moveAnime, textAnime } = useGlobalState((state) => state)
+  const { isMobile } = useDeviceType()
   return (
     <>
       <motion.h1
         layout
-        className={`${
-          moveAnime ? 'ml-24 mt-[8%] text-8xl' : 'mx-auto mt-[15%] text-9xl'
-        } font-semibold leading-snug w-fit`}
+        className={`font-semibold leading-snug text-9xl w-fit max-lg:text-4xl max-lg:leading-loose ${
+          moveAnime ? (isMobile ? 'text-3xl' : 'text-7xl') : ''
+        } `}
         transition={{ duration: 1 }}>
         <LayoutGroup>
           <motion.span

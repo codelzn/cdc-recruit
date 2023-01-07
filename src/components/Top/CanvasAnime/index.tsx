@@ -6,6 +6,7 @@ import TorusAnime from './components/TorusAnime'
 import gsap from 'gsap'
 import { useGlobalState } from '@/store'
 import { motion } from 'framer-motion'
+import { useDeviceType } from '@/hooks'
 
 let scale = {
   value: 2,
@@ -49,16 +50,18 @@ function Experience() {
 
 const variants = {
   processing: { x: 0, y: 0 },
-  ended: { x: 440, y: -80 },
+  sp: { x: 0, y: '-13%' },
+  pc: { x: '30%', y: -80 },
 }
 
 export default function CanvasAnime() {
   const moveAnime = useGlobalState((state) => state.moveAnime)
+  const { isMobile } = useDeviceType()
   return (
     <motion.div
       className='absolute top-0 w-full h-full -z-10'
       variants={variants}
-      animate={moveAnime ? 'ended' : 'processing'}
+      animate={moveAnime ? (isMobile ? 'sp' : 'pc') : 'processing'}
       transition={{ duration: 1 }}>
       <Scene flat camera={{ position: [0, 0, 5] }}>
         <Experience />

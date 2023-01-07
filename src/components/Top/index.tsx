@@ -1,4 +1,3 @@
-import Header from '../ui/Header'
 import Catchcopy from './Catchcopy'
 import CanvasAnime from './CanvasAnime'
 import Loading from './Loading'
@@ -16,7 +15,7 @@ export default function TopCom() {
   }, [])
   return (
     <>
-      <section id='top' className='relative h-full overflow-hidden'>
+      <section id='top' className='relative h-full overflow-hidden grid place-items-center'>
         {!loadAnime && <Loading />}
         <Catchcopy />
         <CanvasAnime />

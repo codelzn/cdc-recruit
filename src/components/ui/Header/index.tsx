@@ -64,7 +64,7 @@ export default function Header() {
       <motion.header
         layout={!isMember}
         className={`fixed top-0 z-[999] h-16 flex items-center justify-between w-full ${
-          true || isMember ? '' : '-mt-16'
+          moveAnime || isMember ? '' : '-mt-16'
         }`}
         transition={{ duration: 1 }}>
         <div className='flex items-center'>
