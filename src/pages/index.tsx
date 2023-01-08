@@ -22,8 +22,8 @@ export default function TopPage({ topData }: Props) {
       <MessageCom />
       <CompanyCom />
       <CdcDataCom />
-      {/* <KeywordCom />
-      <RecruitCom /> */}
+      <KeywordCom />
+      {/* <RecruitCom /> */}
       <Footer />
     </>
   )

@@ -9,6 +9,9 @@
   background: #f3f2ee;
   box-shadow: 14px 14px 27px #cfceca, -14px -14px 27px #ffffff;
 }
+.rot {
+  transform: rotateY(180deg);
+}
 .btnarrow::before {
   content: "";
   box-sizing: content-box;
