@@ -3,6 +3,7 @@ import Header from '@/components/ui/Header'
 import { useGlobalState } from '@/store'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import { useDeviceType } from '@/hooks'
 
 type Props = {
   children: React.ReactNode
@@ -11,6 +12,7 @@ type Props = {
 export default function MemberLayout({ children }: Props) {
   const { memberDetailActive, setMemberDetailActive } = useGlobalState((state) => state)
   const { asPath } = useRouter()
+  const { isMobile } = useDeviceType()
   useEffect(() => {
     if (asPath === '/member' || asPath === '/member/') {
       setMemberDetailActive(false)
@@ -21,9 +23,13 @@ export default function MemberLayout({ children }: Props) {
   return (
     <>
       <Header />
-      <div className={`fixed top-0 left-0 w-full h-full ${memberDetailActive ? '-z-10' : ''}`}>
-        <MemberCom />
-      </div>
+      {isMobile ? (
+        <></>
+      ) : (
+        <div className={`fixed top-0 left-0 w-full h-full ${memberDetailActive ? '-z-10' : ''}`}>
+          <MemberCom />
+        </div>
+      )}
       {children ? <>{children}</> : null}
     </>
   )
