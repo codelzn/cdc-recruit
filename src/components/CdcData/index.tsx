@@ -1,22 +1,20 @@
 import { useTopData } from '@/store'
 import { type CdcDatum } from '@/types'
 import Image from 'next/image'
+import { useEffect } from 'react'
 
 function Details({ item, order }: { item: CdcDatum; order: number }) {
   const { type, subTitle, data, content, img } = item
   const isOdd = order % 2 === 0
   return (
     <li className={`relative p-10 max-lg:p-4 w-[86%] max-lg:w-full neu_glass rounded-2xl ${isOdd ? 'self-end' : ''}`}>
-      <Image
-        src={img.url}
-        width={img.width}
-        height={img.height}
-        alt={subTitle.toString()}
+      {/* ここはnextのImage使うとスマホブラウザが崩れる、理由は不明 */}
+      <picture
         className={`absolute max-lg:static w-1/2 max-lg:w-full -top-20 ${
           isOdd ? 'lg:-left-32 max-lg:left-0' : '-right-32 max-lg:right-0'
-        }`}
-        priority
-      />
+        }`}>
+        <img src={img.url} alt={subTitle.toString()} />
+      </picture>
       <div className={`w-1/2 max-lg:w-full ${isOdd ? 'float-right' : ''}`}>
         <div className='flex justify-around pb-8'>
           {type === 'A' && (

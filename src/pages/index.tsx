@@ -13,6 +13,7 @@ import Header from '@/components/ui/Header'
 type Props = {
   topData: TopPageProps
 }
+
 export default function TopPage({ topData }: Props) {
   useTopData((state) => state.setTopData)(topData)
   return (
