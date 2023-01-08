@@ -19,7 +19,7 @@ export default function Catchcopy() {
     <>
       <motion.h1
         layout
-        className={`z-50 absolute font-semibold leading-snug text-9xl w-fit max-lg:text-4xl max-lg:leading-loose ${
+        className={`z-30 absolute font-semibold leading-snug text-9xl w-fit max-lg:text-4xl max-lg:leading-loose ${
           moveAnime ? (isMobile ? 'text-3xl bottom-[18%]' : 'text-7xl left-16 top-[28%]') : ''
         } `}
         transition={{ duration: 1 }}>
