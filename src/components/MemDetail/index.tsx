@@ -19,6 +19,15 @@ function MemDetail({ mData, nData }: Props) {
   }
   return (
     <>
+      <h3 className='hidden ml-6 text-xl font-semibold leading-loose w-fit max-lg:block'>
+        {
+          <>
+            <span>{mData.catchphrase[0]}</span>
+            <br />
+            <span className='pl-14'>{mData.catchphrase[1]}</span>
+          </>
+        }
+      </h3>
       {/* インタビュー */}
       <ul className='flex flex-col items-center w-full py-20 h-fit bg-cdc-white gap-20'>
         {mData.interviews.map((interview, index) => (
@@ -111,7 +120,9 @@ function MemDetail({ mData, nData }: Props) {
         </div>
       </div>
       {/* 一覧に戻る */}
-      <div className='flex items-center justify-center w-full h-16 text-2xl text-white bg-cdc-gray gap-10' onClick={() => toMemberIndex()}>
+      <div
+        className='flex items-center justify-center w-full h-16 text-2xl text-white bg-cdc-gray gap-10'
+        onClick={() => toMemberIndex()}>
         <span className='w-10 h-5 rotate-180'>
           <svg fill='#fff' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 243.58'>
             <path d='M373.57 0 512 120.75 371.53 243.58l-20.92-23.91 94.93-83L0 137.09v-31.75l445.55-.41-92.89-81.02z' />

@@ -1,7 +1,5 @@
 import { useTopData } from '@/store'
 import { type CdcDatum } from '@/types'
-import Image from 'next/image'
-import { useEffect } from 'react'
 
 function Details({ item, order }: { item: CdcDatum; order: number }) {
   const { type, subTitle, data, content, img } = item
