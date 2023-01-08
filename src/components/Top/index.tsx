@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 export default function TopCom() {
-  const { setSphereAnime, setMainController, loadAnime, mainController } = useGlobalState((state) => state)
+  const { setSphereAnime, setMainController, loadAnime, moveAnime } = useGlobalState((state) => state)
   useEffect(() => {
     if (loadAnime) setSphereAnime(true)
   }, [loadAnime])
