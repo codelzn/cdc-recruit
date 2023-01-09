@@ -17,6 +17,16 @@ function MemDetail({ mData, nData }: Props) {
   const toMemberIndex = () => {
     router.push('/member')
   }
+  let schedules: { time: string; content: string }[] = []
+  if (mData.schedule) {
+    for (let i = 0; i < mData.schedule.times.length; i++) {
+      const currentData = {
+        time: mData.schedule.times[i],
+        content: mData.schedule.contents[i],
+      }
+      schedules.push(currentData)
+    }
+  }
   return (
     <>
       <h3 className='hidden ml-6 text-xl font-semibold leading-loose w-fit max-lg:block'>
@@ -24,19 +34,19 @@ function MemDetail({ mData, nData }: Props) {
           <>
             <span>{mData.catchphrase[0]}</span>
             <br />
-            <span className='pl-14'>{mData.catchphrase[1]}</span>
+            <span>{mData.catchphrase[1]}</span>
           </>
         }
       </h3>
       {/* インタビュー */}
       <ul className='flex flex-col items-center w-full py-20 h-fit bg-cdc-white gap-20'>
         {mData.interviews.map((interview, index) => (
-          <li key={index} className='relative flex flex-col items-center w-4/5 px-10'>
-            <div className='absolute top-0 left-0 flex items-start text-4xl gap-2'>
-              <i className='text-xl font-blod'>#</i>
+          <li key={index} className='relative flex flex-col items-center w-4/5 px-10 max-lg:px-4 max-lg:w-full'>
+            <div className='absolute top-0 left-0 flex items-start text-4xl max-lg:-top-10 max-lg:text-3xl gap-2 max-lg:left-4'>
+              <i className='text-xl max-lg:text-lg font-blod'>#</i>
               <span>0{index + 1}</span>
             </div>
-            <h3 className='w-4/5 mb-10 text-4xl font-semibold leading-normal tracking-wider'>
+            <h3 className='w-4/5 mb-10 text-4xl font-semibold leading-normal tracking-wider max-lg:text-lg max-lg:w-full'>
               {interview.title[0]}
               {interview.title[1] ? (
                 <>
@@ -45,14 +55,16 @@ function MemDetail({ mData, nData }: Props) {
                 </>
               ) : null}
             </h3>
-            <p className='w-4/5 px-10 py-5 mb-20 leading-loose tracking-widest neu_glass'>{interview.content}</p>
+            <p className='w-4/5 px-10 py-5 mb-20 leading-loose tracking-widest max-lg:mb-0 max-lg:text-sm max-lg:leading-relaxed max-lg:px-4 max-lg:w-full neu_glass'>
+              {interview.content}
+            </p>
             {interview.sidepic ? (
               <Image
                 src={interview.sidepic.url}
                 width={interview.sidepic.width}
                 height={interview.sidepic.height}
                 alt={`${mData.memberName}の写真`}
-                className='mx-auto max-w-[1000px]'
+                className='w-full mx-auto max-w-[1000px]'
               />
             ) : null}
           </li>
@@ -61,7 +73,7 @@ function MemDetail({ mData, nData }: Props) {
       {/* スケジュール（あったら） */}
       {!!mData.schedule && (
         <div className='w-full pb-20 grid place-items-center h-fit bg-cdc-white'>
-          <div className='flex flex-col w-4/5 mx-auto bg-cdc-white h-fit'>
+          <div className='flex flex-col w-4/5 mx-auto max-lg:w-full bg-cdc-white h-fit'>
             <span className='self-center w-full border-t-2 border-black'></span>
             <div className='flex items-center'>
               <svg className='scale-75' xmlns='http://www.w3.org/2000/svg' height='48' width='48'>
@@ -69,18 +81,14 @@ function MemDetail({ mData, nData }: Props) {
               </svg>
               <span className='text-xl font-semibold'>1日のスケジュール</span>
             </div>
-            <div className='flex mt-10 gap-16'>
+            <div className='flex mt-10 gap-16 max-lg:gap-3'>
               <ul className='flex flex-col gap-5'>
-                {mData.schedule.times.map((time, index) => (
-                  <li className='px-2 py-1 text-center text-white rounded-lg bg-cdc-blue' key={index}>
-                    {time}
-                  </li>
-                ))}
-              </ul>
-              <ul className='flex flex-col gap-5'>
-                {mData.schedule.contents.map((content, index) => (
-                  <li className='px-2 py-1' key={index}>
-                    {content}
+                {schedules.map((item, index) => (
+                  <li key={index} className='grid grid-cols-10 max-lg:gap-0 gap-5'>
+                    <div className='w-full px-2 py-1 text-center text-white col-span-2 grid place-items-center'>
+                      <span className='block w-full rounded-lg bg-cdc-blue h-fit'>{item.time}</span>
+                    </div>
+                    <div className='px-2 py-1 col-span-7'>{item.content}</div>
                   </li>
                 ))}
               </ul>
@@ -90,20 +98,22 @@ function MemDetail({ mData, nData }: Props) {
       )}
       {/* 次の人 */}
       <div className='w-full h-fit bg-cdc-white'>
-        <div className='relative w-4/5 mx-auto'>
-          <div className='absolute text-6xl font-semibold top-3 left-10'>NEXT</div>
-          <div className='absolute flex flex-col text-4xl left-16 top-1/2 -translate-y-1/2 gap-5'>
+        <div className='relative w-4/5 mx-auto max-lg:w-full'>
+          <div className='absolute text-6xl font-semibold max-lg:text-xl top-3 left-10 max-lg:left-2 max-lg:top-2'>
+            NEXT
+          </div>
+          <div className='absolute flex flex-col text-4xl max-lg:text-base left-16 top-1/2 -translate-y-1/2 gap-5 max-lg:gap-2 max-lg:left-3 max-lg:bottom-0'>
             <p className='font-medium leading-normal'>
               {nData.catchphrase[0]}
               <br />
               {nData.catchphrase[1]}
             </p>
-            <p className='text-2xl'>{nData.memberName}</p>
+            <p className='text-2xl max-lg:text-xs'>{nData.memberName}</p>
             <div
-              className='flex items-center px-5 py-2 text-xl text-white rounded-lg -tracking-wide bg-cdc-gray gap-4 w-fit'
+              className='flex items-center px-5 py-2 text-xl text-white rounded-lg max-lg:gap-2 max-lg:px-3 max-lg:py-1 -tracking-wide bg-cdc-gray gap-4 w-fit'
               onClick={() => toNext()}>
-              <span>出会う</span>
-              <span className='w-10 h-5'>
+              <span className='max-lg:text-xs'>出会う</span>
+              <span className='w-10 h-fit max-lg:w-5'>
                 <svg fill='#fff' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 243.58'>
                   <path d='M373.57 0 512 120.75 371.53 243.58l-20.92-23.91 94.93-83L0 137.09v-31.75l445.55-.41-92.89-81.02z' />
                 </svg>
@@ -121,9 +131,9 @@ function MemDetail({ mData, nData }: Props) {
       </div>
       {/* 一覧に戻る */}
       <div
-        className='flex items-center justify-center w-full h-16 text-2xl text-white bg-cdc-gray gap-10'
+        className='flex items-center justify-center w-full h-16 text-2xl text-white max-lg:relative max-lg:text-lg max-lg:h-10 bg-cdc-gray gap-10 max-lg:gap-5'
         onClick={() => toMemberIndex()}>
-        <span className='w-10 h-5 rotate-180'>
+        <span className='w-10 h-5 max-lg:w-6 rotate-180 grid place-items-center translate-y-[1px]'>
           <svg fill='#fff' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 243.58'>
             <path d='M373.57 0 512 120.75 371.53 243.58l-20.92-23.91 94.93-83L0 137.09v-31.75l445.55-.41-92.89-81.02z' />
           </svg>

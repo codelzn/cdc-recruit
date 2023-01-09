@@ -26,6 +26,7 @@
     "three": "^0.146.0",
     "three-custom-shader-material": "^5.0.0",
     "three-stdlib": "^2.17.3",
+    "uuid": "^9.0.0",
     "zustand": "^4.1.4"
   },
   "devDependencies": {
@@ -34,6 +35,7 @@
     "@types/node": "^18.11.9",
     "@types/react": "^18.0.25",
     "@types/three": "^0.146.0",
+    "@types/uuid": "^9.0.0",
     "autoprefixer": "^10.4.12",
     "eslint": "^8.24.0",
     "eslint-config-next": "^13.0.1",
