@@ -41,17 +41,6 @@ export default function MSp() {
   const textures = useTexture(members.map((member) => member.currentImg.url))
   const plane = useRef<plane>(null)
   const currentMemberData = useMemo(() => members && members[spMemberIndex], [members, spMemberIndex])
-  useControls({
-    debugIndex: {
-      value: 0,
-      min: 0,
-      max: members.length - 1,
-      step: 1,
-      onChange: (value) => {
-        setSpMemberIndex(value)
-      },
-    },
-  })
   const toDetail = () => {
     router.push(`/member/${spMemberIndex}`)
   }

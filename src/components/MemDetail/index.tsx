@@ -58,14 +58,18 @@ function MemDetail({ mData, nData }: Props) {
             <p className='w-4/5 px-10 py-5 mb-20 leading-loose tracking-widest max-lg:mb-0 max-lg:text-sm max-lg:leading-relaxed max-lg:px-4 max-lg:w-full neu_glass'>
               {interview.content}
             </p>
+            {/* next/image使うとスマホで崩れる　理由不明 */}
             {interview.sidepic ? (
-              <Image
-                src={interview.sidepic.url}
-                width={interview.sidepic.width}
-                height={interview.sidepic.height}
-                alt={`${mData.memberName}の写真`}
-                className='w-full mx-auto max-w-[1000px]'
-              />
+              // <Image
+              //   src={interview.sidepic.url}
+              //   width={interview.sidepic.width}
+              //   height={interview.sidepic.height}
+              //   alt={`${mData.memberName}の写真`}
+              //   className='w-full mx-auto max-w-[1000px]'
+              // />
+              <picture className='w-full mx-auto max-w-[1000px]'>
+                <img src={interview.sidepic.url} alt={`${mData.memberName}の写真`} />
+              </picture>
             ) : null}
           </li>
         ))}
