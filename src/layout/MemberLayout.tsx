@@ -1,4 +1,5 @@
-import MemberCom from '@/components/Member'
+import MemberPc from '@/components/MemberPc'
+import MemberSp from '@/components/MemberSp'
 import Header from '@/components/ui/Header'
 import { useGlobalState } from '@/store'
 import { useRouter } from 'next/router'
@@ -24,11 +25,13 @@ export default function MemberLayout({ children }: Props) {
     <>
       <Header />
       {isMobile ? (
-        <></>
+        <main className={`fixed top-0 left-0 w-full h-full ${memberDetailActive ? '-z-10' : ''}`}>
+          <MemberSp />
+        </main>
       ) : (
-        <div className={`fixed top-0 left-0 w-full h-full ${memberDetailActive ? '-z-10' : ''}`}>
-          <MemberCom />
-        </div>
+        <main className={`fixed top-0 left-0 w-full h-full ${memberDetailActive ? '-z-10' : ''}`}>
+          <MemberPc />
+        </main>
       )}
       {children ? <>{children}</> : null}
     </>

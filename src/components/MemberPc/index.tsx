@@ -286,7 +286,7 @@ function Gallery() {
   )
 }
 
-export default function MemberCom() {
+export default function MemberPc() {
   return (
     <Canvas flat camera={{ position: [0, 0, 2] }}>
       <Suspense>

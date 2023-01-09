@@ -29,7 +29,7 @@ function MemDetail({ mData, nData }: Props) {
   }
   return (
     <>
-      <h3 className='hidden ml-6 text-xl font-semibold leading-loose w-fit max-lg:block'>
+      <h3 className='hidden ml-6 text-xl font-semibold leading-loose bg-cdc-white w-fit max-lg:block'>
         {
           <>
             <span>{mData.catchphrase[0]}</span>
