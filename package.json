@@ -23,7 +23,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-use": "^17.4.0",
-    "swiper": "^8.4.5",
     "three": "^0.146.0",
     "three-custom-shader-material": "^5.0.0",
     "three-stdlib": "^2.17.3",

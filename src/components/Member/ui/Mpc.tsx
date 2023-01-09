@@ -1,16 +1,16 @@
-import { Suspense, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import * as THREE from 'three'
 import gsap from 'gsap'
 import { motion } from 'framer-motion'
 import { useGlobalState, useMemberData } from '@/store'
-import { Preload, Html, useTexture } from '@react-three/drei'
-import { Canvas, useFrame } from '@react-three/fiber'
+import { Html, useTexture } from '@react-three/drei'
+import { useFrame } from '@react-three/fiber'
 
-import vertexShader from './shader/vertex.glsl'
-import fragmentShader from './shader/fragment.glsl'
+import vertexShader from '../shader/vertex.glsl'
+import fragmentShader from '../shader/fragment.glsl'
 
-import Details from './ui/Details'
+import Details from './Details'
 
 // 写真のサイズ
 const gHeight = 1.2
@@ -55,7 +55,7 @@ const meshConfig = {
   iRotationY: -0.3,
 }
 
-function Gallery() {
+export default function Mpc() {
   const members = useMemberData((state) => state.members)
   const { memberDetailActive, setMemberDetailActive } = useGlobalState((state) => state)
   const router = useRouter()
@@ -283,16 +283,5 @@ function Gallery() {
         </motion.ul>
       </Html>
     </>
-  )
-}
-
-export default function MemberPc() {
-  return (
-    <Canvas flat camera={{ position: [0, 0, 2] }}>
-      <Suspense>
-        <Gallery />
-        <Preload all />
-      </Suspense>
-    </Canvas>
   )
 }
