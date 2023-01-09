@@ -18,7 +18,7 @@ const btnVariants = {
 export default function Details({ active = 0, toDetail }: Props) {
   const members = useMemberData((state) => state.members)
   const member = members[active]
-  const { memberDetailActive, setMemberDetailActive } = useGlobalState((state) => state)
+  const memberDetailActive = useGlobalState((state) => state.memberDetailActive)
   if (!member) return null
   return (
     <>

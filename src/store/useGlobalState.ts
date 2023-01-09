@@ -16,7 +16,9 @@ type GlobalState = {
 
   // member page animation controller state
   memberDetailActive: boolean
+  spMemberIndex: number
   setMemberDetailActive: (value: boolean) => void
+  setSpMemberIndex: (value: number) => void
 }
 
 export const useGlobalState = create(
@@ -34,8 +36,12 @@ export const useGlobalState = create(
     setLoadAnime: (value: boolean) => set({ loadAnime: value }),
     // member page animation controller state
     memberDetailActive: false,
+    spMemberIndex: 0,
     setMemberDetailActive(value) {
       set({ memberDetailActive: value })
+    },
+    setSpMemberIndex(value) {
+      set({ spMemberIndex: value })
     },
   })),
 )

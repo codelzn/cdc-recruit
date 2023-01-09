@@ -7,8 +7,8 @@ import { useGlobalState, useMemberData } from '@/store'
 import { Html, useTexture } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 
-import vertexShader from '../shader/vertex.glsl'
-import fragmentShader from '../shader/fragment.glsl'
+import vertexShader from '../shader/vertexPc.glsl'
+import fragmentShader from '../shader/fragmentPc.glsl'
 
 import Details from './Details'
 
