@@ -29,7 +29,7 @@ function MemDetail({ mData, nData }: Props) {
   }
   return (
     <>
-      <h3 className='hidden ml-6 text-xl font-semibold leading-loose bg-cdc-white w-fit max-lg:block'>
+      {/* <h3 className='hidden ml-6 text-xl font-semibold leading-loose bg-cdc-white w-fit max-lg:block'>
         {
           <>
             <span>{mData.catchphrase[0]}</span>
@@ -37,7 +37,7 @@ function MemDetail({ mData, nData }: Props) {
             <span>{mData.catchphrase[1]}</span>
           </>
         }
-      </h3>
+      </h3> */}
       {/* インタビュー */}
       <ul className='flex flex-col items-center w-full py-20 h-fit bg-cdc-white gap-20'>
         {mData.interviews.map((interview, index) => (

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef } from 'react'
 import * as THREE from 'three'
 import { useMemberData, useGlobalState } from '@/store'
-import { useThree } from '@react-three/fiber'
+import { useFrame, useThree } from '@react-three/fiber'
 import { Html, useTexture } from '@react-three/drei'
 import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
@@ -17,6 +17,9 @@ const planeGeometry = new THREE.PlaneGeometry(gWidth, gHeight, 32, 32)
 const planeMaterial = new THREE.ShaderMaterial({
   uniforms: {
     uTexture: { value: null },
+    uTime: { value: 0 },
+    strongth: { value: 0 },
+    deep: { value: 0 },
   },
   vertexShader,
   fragmentShader,
@@ -38,25 +41,58 @@ export default function MSp() {
   const members = useMemberData((state) => state.members)
   const { spMemberIndex, setSpMemberIndex, memberDetailActive } = useGlobalState((state) => state)
   const router = useRouter()
+  const mIndex = Number(router.query.id)
   const textures = useTexture(members.map((member) => member.currentImg.url))
-  const { viewport } = useThree()
   const plane = useRef<plane>(null)
   const currentMemberData = useMemo(() => members && members[spMemberIndex], [members, spMemberIndex])
   const toDetail = () => {
     router.push(`/member/${spMemberIndex}`)
   }
+  const { r, s, d } = useControls({
+    r: {
+      value: 1,
+      min: 0,
+      max: 2,
+      step: 0.01,
+    },
+    s: {
+      value: 1,
+      min: 0,
+      max: 2,
+      step: 0.001,
+    },
+    d: {
+      value: 0.1,
+      min: 0,
+      max: 3,
+      step: 0.01,
+    },
+  })
   useEffect(() => {
     if (plane.current) {
       plane.current.material.uniforms.uTexture.value = textures[spMemberIndex]
     }
   }, [currentMemberData])
+  useFrame((state, delta) => {
+    if (plane.current) {
+      plane.current.material.uniforms.uTime.value = state.clock.getElapsedTime()
+      plane.current.material.uniforms.strongth.value = s
+      plane.current.material.uniforms.deep.value = d
+    }
+  })
+  useEffect(() => {
+    if (!isNaN(mIndex) && mIndex !== spMemberIndex) {
+      setSpMemberIndex(mIndex)
+    }
+  }, [mIndex])
   return (
     <>
       <mesh
         ref={plane}
         geometry={planeGeometry}
         material={planeMaterial}
-        scale={[0.8, 0.8, 0.8]}
+        scale={[r, r, r]}
+        // scale={[0.8, 0.8, 0.8]}
         position={[0, 0.6, 0]}
         onClick={() => toDetail()}
       />
