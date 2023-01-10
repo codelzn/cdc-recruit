@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef } from 'react'
 import * as THREE from 'three'
+import gsap from 'gsap'
 import { useMemberData, useGlobalState } from '@/store'
 import { useFrame, useThree } from '@react-three/fiber'
 import { Html, useTexture } from '@react-three/drei'
@@ -18,8 +19,6 @@ const planeMaterial = new THREE.ShaderMaterial({
   uniforms: {
     uTexture: { value: null },
     uTime: { value: 0 },
-    strongth: { value: 0 },
-    deep: { value: 0 },
   },
   vertexShader,
   fragmentShader,
@@ -39,35 +38,18 @@ const btnVariants = {
 
 export default function MSp() {
   const members = useMemberData((state) => state.members)
-  const { spMemberIndex, setSpMemberIndex, memberDetailActive } = useGlobalState((state) => state)
+  const { spMemberIndex, setSpMemberIndex, memberDetailActive, setMemberDetailActive } = useGlobalState(
+    (state) => state,
+  )
   const router = useRouter()
   const mIndex = Number(router.query.id)
   const textures = useTexture(members.map((member) => member.currentImg.url))
   const plane = useRef<plane>(null)
   const currentMemberData = useMemo(() => members && members[spMemberIndex], [members, spMemberIndex])
   const toDetail = () => {
+    setMemberDetailActive(true)
     router.push(`/member/${spMemberIndex}`)
   }
-  const { r, s, d } = useControls({
-    r: {
-      value: 1,
-      min: 0,
-      max: 2,
-      step: 0.01,
-    },
-    s: {
-      value: 1,
-      min: 0,
-      max: 2,
-      step: 0.001,
-    },
-    d: {
-      value: 0.1,
-      min: 0,
-      max: 3,
-      step: 0.01,
-    },
-  })
   useEffect(() => {
     if (plane.current) {
       plane.current.material.uniforms.uTexture.value = textures[spMemberIndex]
@@ -76,8 +58,6 @@ export default function MSp() {
   useFrame((state, delta) => {
     if (plane.current) {
       plane.current.material.uniforms.uTime.value = state.clock.getElapsedTime()
-      plane.current.material.uniforms.strongth.value = s
-      plane.current.material.uniforms.deep.value = d
     }
   })
   useEffect(() => {
@@ -85,15 +65,25 @@ export default function MSp() {
       setSpMemberIndex(mIndex)
     }
   }, [mIndex])
+  useEffect(() => {
+    if (plane.current) {
+      if (memberDetailActive) {
+        gsap.to(plane.current.scale, { x: 1.35, y: 1.35, z: 1.35, duration: 0.5 })
+        gsap.to(plane.current.position, { x: -0.3, y: 0.65, z: 0, duration: 0.5 })
+      } else {
+        gsap.to(plane.current.scale, { x: 0.7, y: 0.7, z: 0.7, duration: 0.5 })
+        gsap.to(plane.current.position, { x: 0, y: 0.65, z: 0, duration: 0.5 })
+      }
+    }
+  }, [memberDetailActive])
   return (
     <>
       <mesh
         ref={plane}
         geometry={planeGeometry}
         material={planeMaterial}
-        scale={[r, r, r]}
-        // scale={[0.8, 0.8, 0.8]}
-        position={[0, 0.6, 0]}
+        scale={[0.7, 0.7, 0.7]}
+        position={[0, 0.65, 0]}
         onClick={() => toDetail()}
       />
       <Html fullscreen className='relative w-full h-full'>
