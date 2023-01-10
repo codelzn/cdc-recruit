@@ -2,8 +2,8 @@ import { useEffect, useMemo, useRef } from 'react'
 import * as THREE from 'three'
 import gsap from 'gsap'
 import { useMemberData, useGlobalState } from '@/store'
-import { useFrame, useThree } from '@react-three/fiber'
-import { Html, useTexture } from '@react-three/drei'
+import { useFrame } from '@react-three/fiber'
+import { Html, useTexture, ScrollControls, Scroll } from '@react-three/drei'
 import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
 import vertexShader from '../shader/vertexSp.glsl'
@@ -36,6 +36,17 @@ const btnVariants = {
   },
 }
 
+const introVariants = {
+  off: {
+    x: 0,
+    y: 0,
+  },
+  on: {
+    x: 0,
+    y: 70,
+  },
+}
+
 export default function MSp() {
   const members = useMemberData((state) => state.members)
   const { spMemberIndex, setSpMemberIndex, memberDetailActive, setMemberDetailActive } = useGlobalState(
@@ -47,8 +58,10 @@ export default function MSp() {
   const plane = useRef<plane>(null)
   const currentMemberData = useMemo(() => members && members[spMemberIndex], [members, spMemberIndex])
   const toDetail = () => {
-    setMemberDetailActive(true)
-    router.push(`/member/${spMemberIndex}`)
+    if (!memberDetailActive) {
+      setMemberDetailActive(true)
+      router.push(`/member/${spMemberIndex}`)
+    }
   }
   useEffect(() => {
     if (plane.current) {
@@ -90,13 +103,23 @@ export default function MSp() {
         <div className='absolute bottom-0 w-full h-1/2'>
           {currentMemberData && (
             <div className='flex flex-col mx-8 text-right gap-4'>
-              <h3 className='text-xl font-semibold leading-relaxed whitespace-nowrap'>
+              <motion.h3
+                variants={introVariants}
+                animate={memberDetailActive ? 'on' : 'off'}
+                className='text-xl font-semibold leading-relaxed whitespace-nowrap'>
                 {currentMemberData.catchphrase[0]}
                 <br />
                 {currentMemberData.catchphrase[1]}
-              </h3>
-              <p className='text-lg'>{currentMemberData.memberName}</p>
-              <p className='-mt-3 text-base'>{currentMemberData.duties}</p>
+              </motion.h3>
+              <motion.p variants={introVariants} animate={memberDetailActive ? 'on' : 'off'} className='text-lg'>
+                {currentMemberData.memberName}
+              </motion.p>
+              <motion.p
+                variants={introVariants}
+                animate={memberDetailActive ? 'on' : 'off'}
+                className='-mt-3 text-base'>
+                {currentMemberData.duties}
+              </motion.p>
               <motion.div
                 animate={memberDetailActive ? 'hidden' : 'show'}
                 transition={{ duration: 0.5 }}
