@@ -21,7 +21,7 @@ export default function MemberLayout({ children }: Props) {
   return (
     <>
       <Header />
-      <main className={`fixed top-0 left-0 w-full h-full ${memberDetailActive ? '-z-10' : ''}`}>
+      <main className={`fixed top-0 left-0 w-full mainHeight ${memberDetailActive ? '-z-10' : ''}`}>
         <Member />
       </main>
       {children ? <>{children}</> : null}

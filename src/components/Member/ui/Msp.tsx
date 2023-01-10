@@ -39,6 +39,7 @@ export default function MSp() {
   const { spMemberIndex, setSpMemberIndex, memberDetailActive } = useGlobalState((state) => state)
   const router = useRouter()
   const textures = useTexture(members.map((member) => member.currentImg.url))
+  const { viewport } = useThree()
   const plane = useRef<plane>(null)
   const currentMemberData = useMemo(() => members && members[spMemberIndex], [members, spMemberIndex])
   const toDetail = () => {

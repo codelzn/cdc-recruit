@@ -8,7 +8,7 @@ import { useDeviceType } from '@/hooks'
 export default function MemberPc() {
   const { isMobile } = useDeviceType()
   return (
-    <Canvas flat camera={{ position: [0, 0, 2] }}>
+    <Canvas flat camera={{ position: [0, 0, 2] }} dpr={[1, 2]}>
       <Suspense>
         {isMobile ? <Msp /> : <Mpc />}
         <Preload all />
