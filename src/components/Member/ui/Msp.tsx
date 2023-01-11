@@ -3,12 +3,13 @@ import * as THREE from 'three'
 import gsap from 'gsap'
 import { useMemberData, useGlobalState } from '@/store'
 import { useFrame } from '@react-three/fiber'
-import { Html, useTexture, ScrollControls, Scroll } from '@react-three/drei'
+import { Html, useTexture } from '@react-three/drei'
 import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
 import vertexShader from '../shader/vertexSp.glsl'
 import fragmentShader from '../shader/fragmentSp.glsl'
 import { useControls } from 'leva'
+import { useSwipeable } from 'react-swipeable'
 
 // 写真のサイズ
 const gHeight = 1.2
@@ -57,7 +58,20 @@ export default function MSp() {
   const textures = useTexture(members.map((member) => member.currentImg.url))
   const plane = useRef<plane>(null)
   const currentMemberData = useMemo(() => members && members[spMemberIndex], [members, spMemberIndex])
-  const toDetail = () => {
+  const handlers = useSwipeable({
+    onSwipedRight: () => {
+      if (spMemberIndex > 0) {
+        setSpMemberIndex(spMemberIndex - 1)
+      }
+    },
+    onSwipedLeft: () => {
+      if (spMemberIndex < members.length - 1) {
+        setSpMemberIndex(spMemberIndex + 1)
+      }
+    },
+  })
+  const toDetail = (e) => {
+    e.stopPropagation()
     if (!memberDetailActive) {
       setMemberDetailActive(true)
       router.push(`/member/${spMemberIndex}`)
@@ -97,9 +111,9 @@ export default function MSp() {
         material={planeMaterial}
         scale={[0.7, 0.7, 0.7]}
         position={[0, 0.65, 0]}
-        onClick={() => toDetail()}
+        onClick={(e) => toDetail(e)}
       />
-      <Html fullscreen className='relative w-full h-full'>
+      <Html fullscreen className='relative w-full h-full' {...handlers}>
         <div className='absolute bottom-0 w-full h-1/2'>
           {currentMemberData && (
             <div className='flex flex-col mx-8 text-right gap-4'>
@@ -125,7 +139,7 @@ export default function MSp() {
                 transition={{ duration: 0.5 }}
                 variants={btnVariants}
                 className='absolute flex items-center px-5 py-2 text-xl text-white rounded-lg left-8 -tracking-wide bg-cdc-gray bottom-[20%] gap-4'
-                onClick={() => toDetail()}>
+                onClick={(e) => toDetail(e)}>
                 <span>出会う</span>
                 <span className='w-10 h-5'>
                   <svg fill='#fff' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 243.58'>

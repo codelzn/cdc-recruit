@@ -4,6 +4,7 @@ import { Canvas } from '@react-three/fiber'
 import Mpc from './ui/Mpc'
 import Msp from './ui/Msp'
 import { useDeviceType } from '@/hooks'
+import { useSwipeable } from 'react-swipeable'
 
 export default function MemberPc() {
   const { isMobile } = useDeviceType()
