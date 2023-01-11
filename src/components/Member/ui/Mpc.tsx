@@ -38,7 +38,7 @@ let position = 0
 let rounded = 0
 
 // ulのアニメーション定義
-const ulVariants = {
+export const ulVariants = {
   show: {
     opacity: 1,
   },

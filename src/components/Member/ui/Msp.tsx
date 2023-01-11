@@ -10,6 +10,7 @@ import vertexShader from '../shader/vertexSp.glsl'
 import fragmentShader from '../shader/fragmentSp.glsl'
 import { useControls } from 'leva'
 import { useSwipeable } from 'react-swipeable'
+import { ulVariants } from './Mpc'
 
 // 写真のサイズ
 const gHeight = 1.2
@@ -60,12 +61,12 @@ export default function MSp() {
   const currentMemberData = useMemo(() => members && members[spMemberIndex], [members, spMemberIndex])
   const handlers = useSwipeable({
     onSwipedRight: () => {
-      if (spMemberIndex > 0) {
+      if (spMemberIndex > 0 && !memberDetailActive) {
         setSpMemberIndex(spMemberIndex - 1)
       }
     },
     onSwipedLeft: () => {
-      if (spMemberIndex < members.length - 1) {
+      if (spMemberIndex < members.length - 1 && !memberDetailActive) {
         setSpMemberIndex(spMemberIndex + 1)
       }
     },
@@ -98,7 +99,7 @@ export default function MSp() {
         gsap.to(plane.current.scale, { x: 1.35, y: 1.35, z: 1.35, duration: 0.5 })
         gsap.to(plane.current.position, { x: -0.3, y: 0.65, z: 0, duration: 0.5 })
       } else {
-        gsap.to(plane.current.scale, { x: 0.7, y: 0.7, z: 0.7, duration: 0.5 })
+        gsap.to(plane.current.scale, { x: 0.8, y: 0.8, z: 0.8, duration: 0.5 })
         gsap.to(plane.current.position, { x: 0, y: 0.65, z: 0, duration: 0.5 })
       }
     }
@@ -109,7 +110,7 @@ export default function MSp() {
         ref={plane}
         geometry={planeGeometry}
         material={planeMaterial}
-        scale={[0.7, 0.7, 0.7]}
+        scale={[0.8, 0.8, 0.8]}
         position={[0, 0.65, 0]}
         onClick={(e) => toDetail(e)}
       />
@@ -117,6 +118,21 @@ export default function MSp() {
         <div className='absolute bottom-0 w-full h-1/2'>
           {currentMemberData && (
             <div className='flex flex-col mx-8 text-right gap-4'>
+              <motion.ul
+                variants={ulVariants}
+                animate={memberDetailActive ? 'hide' : 'show'}
+                transition={{ duration: 0.5 }}
+                className={`absolute left-1/2 -translate-x-1/2 -top-5 flex gap-5 ${
+                  memberDetailActive ? 'pointer-events-none' : ''
+                }`}>
+                {members.map((_, index) => (
+                  <li
+                    key={index}
+                    className={`w-5 h-2 rounded-full ${
+                      spMemberIndex === index ? 'text-2xl font-extrabold bg-cdc-blue' : 'bg-cdc-gray'
+                    }`}></li>
+                ))}
+              </motion.ul>
               <motion.h3
                 variants={introVariants}
                 animate={memberDetailActive ? 'on' : 'off'}
