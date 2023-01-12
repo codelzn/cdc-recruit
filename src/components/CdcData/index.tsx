@@ -39,7 +39,9 @@ function Details({ item, order }: { item: CdcDatum; order: number }) {
                 )}
           </h4>
         </div>
-        <p className='text-base leading-loose tracking-widest 2xl:text-lg 2xl:leading-loose'>{content}</p>
+        <p className='text-base leading-loose tracking-widest max-lg:leading-loose max-lg:text-sm 2xl:text-lg 2xl:leading-loose'>
+          {content}
+        </p>
       </div>
     </li>
   )

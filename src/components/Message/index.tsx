@@ -24,7 +24,7 @@ export default function Message() {
           style={{ width: 'auto' }}
           className='absolute object-cover h-full overflow-hidden rounded-xl -right-52 max-lg:right-0'
         />
-        <ul className='absolute p-10 text-3xl tracking-widest 2xl:p-16 2xl:text-4xl 2xl:leading-extra-loose max-lg:static max-lg:p-5 max-lg:text-lg bottom-10 left-10 leading-extra-loose message_glass w-fit max-lg:mt-20 max-lg:mb-8 max-lg:flex max-lg:flex-col max-lg:gap-4 max-lg:leading-normal max-lg:font-semibold max-lg:mx-4'>
+        <ul className='absolute p-10 text-3xl tracking-widest 2xl:p-16 2xl:text-4xl 2xl:leading-extra-loose max-lg:static max-lg:p-5 max-lg:text-lg bottom-10 left-10 leading-extra-loose message_glass w-fit max-lg:mt-20 max-lg:mb-8 max-lg:flex max-lg:flex-col max-lg:gap-4 max-lg:leading-normal max-lg:font-medium max-lg:mx-4'>
           {description.map((text, index) => (
             <li key={index}>
               <p>{text}</p>
