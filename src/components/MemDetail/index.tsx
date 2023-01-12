@@ -29,21 +29,12 @@ function MemDetail({ mData, nData }: Props) {
   }
   return (
     <>
-      {/* <h3 className='hidden ml-6 text-xl font-semibold leading-loose bg-cdc-white w-fit max-lg:block'>
-        {
-          <>
-            <span>{mData.catchphrase[0]}</span>
-            <br />
-            <span>{mData.catchphrase[1]}</span>
-          </>
-        }
-      </h3> */}
       {/* インタビュー */}
       <ul className='flex flex-col items-center w-full py-20 h-fit bg-cdc-white gap-20'>
         {mData.interviews.map((interview, index) => (
           <li key={index} className='relative flex flex-col items-center w-4/5 px-10 max-lg:px-4 max-lg:w-full'>
-            <div className='absolute top-0 left-0 flex items-start text-4xl max-lg:-top-10 max-lg:text-3xl gap-2 max-lg:left-4'>
-              <i className='text-xl max-lg:text-lg font-blod'>#</i>
+            <div className='absolute top-0 left-0 flex items-start text-4xl max-lg:-top-10 max-lg:text-3xl 2xl:text-5xl gap-2 max-lg:left-4'>
+              <i className='text-xl max-lg:text-lg font-blod 2xl:text-xl'>#</i>
               <span>0{index + 1}</span>
             </div>
             <h3 className='w-4/5 mb-10 text-4xl font-semibold leading-normal tracking-wider max-lg:text-lg max-lg:w-full'>
@@ -55,7 +46,7 @@ function MemDetail({ mData, nData }: Props) {
                 </>
               ) : null}
             </h3>
-            <p className='w-4/5 px-10 py-5 mb-20 leading-loose tracking-widest max-lg:mb-0 max-lg:text-sm max-lg:leading-relaxed max-lg:px-4 max-lg:w-full neu_glass'>
+            <p className='w-4/5 px-10 py-5 mb-20 leading-loose tracking-widest max-lg:mb-0 max-lg:text-sm max-lg:leading-relaxed max-lg:px-4 max-lg:w-full neu_glass 2xl:px-12 2xl:py-7 2xl:leading-loose 2xl:text-xl'>
               {interview.content}
             </p>
             {/* next/image使うとスマホで崩れる　理由不明 */}
@@ -83,12 +74,12 @@ function MemDetail({ mData, nData }: Props) {
               <svg className='scale-75' xmlns='http://www.w3.org/2000/svg' height='48' width='48'>
                 <path d='m31.35 33.65 2.25-2.25-7.95-8V13.35h-3V24.6ZM24 44q-4.1 0-7.75-1.575-3.65-1.575-6.375-4.3-2.725-2.725-4.3-6.375Q4 28.1 4 24t1.575-7.75q1.575-3.65 4.3-6.375 2.725-2.725 6.375-4.3Q19.9 4 24 4t7.75 1.575q3.65 1.575 6.375 4.3 2.725 2.725 4.3 6.375Q44 19.9 44 24t-1.575 7.75q-1.575 3.65-4.3 6.375-2.725 2.725-6.375 4.3Q28.1 44 24 44Zm0-20Zm0 17q7 0 12-5t5-12q0-7-5-12T24 7q-7 0-12 5T7 24q0 7 5 12t12 5Z' />
               </svg>
-              <span className='text-xl font-semibold'>1日のスケジュール</span>
+              <span className='text-xl font-semibold 2xl:text-2xl'>1日のスケジュール</span>
             </div>
             <div className='flex mt-10 gap-16 max-lg:gap-3'>
               <ul className='flex flex-col gap-5'>
                 {schedules.map((item, index) => (
-                  <li key={index} className='grid grid-cols-10 max-lg:gap-0 gap-5'>
+                  <li key={index} className='text-base grid grid-cols-10 max-lg:gap-0 gap-5 2xl:text-lg'>
                     <div className='w-full px-2 py-1 text-center text-white col-span-2 grid place-items-center'>
                       <span className='block w-full rounded-lg bg-cdc-blue h-fit'>{item.time}</span>
                     </div>
