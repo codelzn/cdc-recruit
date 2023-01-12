@@ -74,14 +74,14 @@ export default function Header() {
             height={image.height}
             priority
             alt={alt}
-            className='w-10 ml-pc-m max-lg:ml-sp-m'
+            className='w-10 ml-pc-m max-lg:ml-sp-m 2xl:ml-16'
             onClick={() => push('/')}
           />
-          <p className='mt-4 ml-4 text-xs'>{description}</p>
+          <p className='mt-4 ml-4 text-xs 2xl:text-base'>{description}</p>
         </div>
-        <nav className='w-fit max-lg:mr-sp-m mr-pc-m h-3/5'>
+        <nav className='w-fit max-lg:mr-sp-m 2xl:mr-16 mr-pc-m h-3/5'>
           {/* pc Nav */}
-          <ul className={`max-lg:hidden flex items-center h-full text-base font-semibold gap-8`}>
+          <ul className={`max-lg:hidden flex items-center h-full text-base 2xl:text-lg font-semibold gap-8`}>
             {navigations.map((nav, index) =>
               index !== 5 ? (
                 <li key={index}>

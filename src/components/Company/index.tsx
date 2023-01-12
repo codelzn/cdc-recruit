@@ -5,7 +5,7 @@ export default function CompanyCom() {
   const { midashi, title, text, detailTitle, details, introimg } = useTopData((state) => state.introduce)
   return (
     <>
-      <section id='company' className='h-full px-10 pt-24 max-lg:px-4 max-lg:h-fit'>
+      <section id='company' className='h-full px-10 pt-24 max-lg:px-4 2xl:mx-16 max-lg:h-fit'>
         <h2 className='text-4xl font-bold'>{midashi}</h2>
         <div className='flex justify-around mt-14 max-lg:flex-col'>
           <div className='w-1/2 max-lg:w-full grid place-items-center max-lg:mb-10'>
@@ -18,11 +18,13 @@ export default function CompanyCom() {
               className='w-4/5 max-lg:w-full'
             />
           </div>
-          <div className='w-1/2 p-5 max-lg:w-full neu_glass'>
-            <h3 className='pb-4 text-3xl border-b-2 border-black max-lg:text-2xl'>{title[0]}</h3>
-            <p className='mt-6 leading-loose max-lg:text-sm max-lg:leading-loose'>{text}</p>
-            <h4 className='mt-6 text-2xl max-lg:text-xl'>{detailTitle}</h4>
-            <ul className='max-lg:text-sm max-lg:leading-loose'>
+          <div className='w-1/2 p-5 2xl:p-10 max-lg:w-full neu_glass'>
+            <h3 className='pb-4 text-3xl border-b-2 border-black 2xl:text-4xl max-lg:text-2xl'>{title[0]}</h3>
+            <p className='mt-6 leading-loose max-lg:text-sm 2xl:text-lg max-lg:leading-loose 2xl:leading-loose'>
+              {text}
+            </p>
+            <h4 className='mt-6 text-2xl 2xl:text-3xl max-lg:text-xl'>{detailTitle}</h4>
+            <ul className='max-lg:text-sm 2xl:text-lg max-lg:leading-loose'>
               {details.map((item, index) => (
                 <li key={index} className='mt-4 list-disc list-inside'>
                   {item}

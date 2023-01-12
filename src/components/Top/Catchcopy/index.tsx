@@ -1,7 +1,6 @@
 import { LayoutGroup, motion } from 'framer-motion'
 import { useTopData, useGlobalState } from '@/store'
 import { useDeviceType } from '@/hooks'
-import { useEffect } from 'react'
 
 const textVariants = {
   hidden: {
@@ -25,7 +24,7 @@ export default function Catchcopy() {
             ? isMobile
               ? 'text-3xl bottom-[18%]'
               : isHD
-              ? 'text-9xl left-16 top-[28%]'
+              ? 'text-[110px] left-16 top-[28%]'
               : 'text-8xl left-16 top-[28%]'
             : ''
         } `}
