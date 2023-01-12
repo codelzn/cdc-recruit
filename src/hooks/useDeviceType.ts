@@ -35,12 +35,10 @@ export function useMediaQuery(query: string): boolean {
 
 export function useDeviceType(
   mobileSize: number = 640,
-  tabletSize: number = 1024,
-  desktopSize: number = 1280,
-): { isMobile: boolean; isTablet: boolean; isDesktop: boolean } {
+  desktopSize: number = 1536,
+): { isMobile: boolean; isHD: boolean } {
   const isMobile = useMediaQuery(`(max-width: ${mobileSize}px)`)
-  const isTablet = useMediaQuery(`(max-width: ${tabletSize}px) and (min-width: ${mobileSize}px)`)
-  const isDesktop = useMediaQuery(`(max-width: ${desktopSize}px) and (min-width: ${tabletSize}px)`)
+  const isHD = useMediaQuery(`(min-width: ${desktopSize}px)`)
 
-  return { isMobile, isTablet, isDesktop }
+  return { isMobile, isHD }
 }
