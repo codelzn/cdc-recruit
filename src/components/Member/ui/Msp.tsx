@@ -151,6 +151,7 @@ export default function MSp() {
                 {currentMemberData.duties}
               </motion.p>
               <motion.div
+                layout
                 animate={memberDetailActive ? 'hidden' : 'show'}
                 transition={{ duration: 0.5 }}
                 variants={btnVariants}
